@@ -24,13 +24,11 @@ div.WID {
 .resu {
     text-align: justify;
     color: #52D3D8;
-    font-size: 250%;
-    background-color: #38419D;
-    margin: 0% 0% 0% 25%;
-    height: 50%;
-    width: 50%;
+    font-size: 50px;
+    height: 600px;
+    width: 1024px;
     overflow: auto;
-    
+    background: url('backgroindspic/bllogo.webp') no-repeat center;
 
 
 
