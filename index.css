@@ -3,6 +3,7 @@
 * {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
 header {
     font-family: "Bebas Neue", sans-serif;
@@ -21,16 +22,29 @@ div.WID {
     font-style: italic;
     box-shadow: 5px 20px 20px 0px;
 }
-.resu {
-    text-align: justify;
-    color: #52D3D8;
-    font-size: 50px;
-    height: 600px;
-    width: 1024px;
-    overflow: auto;
-    background: url('backgroindspic/bllogo.webp') no-repeat center;
 
-
-
-
+div{
+    background: grey;
 }
+div > div{
+    text-align: center;
+    text-align: justify;
+    
+}
+div > div > p{
+    width: 48%;
+    padding: 0.7%;
+    background-color: #38419d;
+    margin: 1%;
+    float: left;
+    border: 1px solid black ;
+    font-size: 130%;
+}
+.xp{
+    
+}
+.intro{
+    
+    
+}
+
