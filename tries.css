@@ -1,0 +1,72 @@
+*{
+    box-sizing: border-box;
+    padding: 0px;
+    margin: 0px;
+}
+.hola{
+    font-size: 70px;
+}
+
+
+div{
+    background-color: aquamarine;
+    width: auto;
+    height: 500px;
+    padding: 10px;
+    position: relative;
+    top: 50px;
+}
+@media (min-width: 1600px) and (max-width: 1900){
+    p{
+        margin: 15px 15px 60px 10px;
+    }
+    p.p1{
+        background-color: red;
+        width: 70px;
+        height: 70px;
+    }
+    p.p2{
+        background-color: blue;
+        width: 70px;
+        height: 70px;
+    }
+    p.p3{
+        background-color: green;
+        margin: 0px 15px 60px 10px;
+        width: 70px;
+        height: 70px;
+    }
+    p.p4{
+        background-color: yellow;
+        width: 70px;
+        height: 70px;
+    }
+
+}
+@media (min-width: 1901){
+    p{
+        margin: 15px 15px 60px 10px;
+    }
+    p.p1{
+        background-color: red;
+        width: 70px;
+        height: 70px;
+    }
+    p.p2{
+        background-color: blue;
+        width: 70px;
+        height: 70px;
+    }
+    p.p3{
+        background-color: green;
+        margin: 0px 15px 60px 10px;
+        width: 70px;
+        height: 70px;
+    }
+    p.p4{
+        background-color: yellow;
+        width: 70px;
+        height: 70px;
+    }
+
+}
