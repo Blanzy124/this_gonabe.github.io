@@ -43,30 +43,37 @@ div{
     }
 
 }
-@media (min-width: 1901){
+@media (min-width: 1901px){
     p{
         margin: 15px 15px 60px 10px;
     }
     p.p1{
         background-color: red;
-        width: 70px;
-        height: 70px;
+        width: 400px;
+        height: 400px;
+        position: absolute;
+        left: 1450px;;
     }
     p.p2{
         background-color: blue;
-        width: 70px;
-        height: 70px;
+        width: 400px;
+        height: 400px;
+        position: absolute;
+        left: 1040px;;
     }
     p.p3{
         background-color: green;
-        margin: 0px 15px 60px 10px;
-        width: 70px;
-        height: 70px;
+        width: 400px;
+        height: 400px;
+        position: absolute;
+        left: 630px;;
+        
     }
     p.p4{
         background-color: yellow;
-        width: 70px;
-        height: 70px;
+        width: 400px;
+        height: 400px;
+
     }
 
 }
