@@ -1,0 +1,41 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
+
+* {
+    box-sizing: border-box;
+    text-decoration: none;
+}
+.back-color{
+    background-color: #212121;
+}
+.bg-my-h2-top-color{
+    background-color: #2d3e6d;
+    
+}
+.border{
+    border-color: #14FFEC;
+}
+/*Font*/
+.name-font {
+    font-family: "Bebas Neue", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+  }
+.h2-titles{
+    color:white;
+    font-size: 220%;
+    font-family: "Bebas Neue", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+.h2-color{
+    color: white;
+    font-size: 100%;
+    text-align: justify;
+    
+}
+@media (max-width: 575px){
+    .margin-sm-leftlright{
+        margin-left: 8%;
+        margin-right: 8%;
+    }
+}
