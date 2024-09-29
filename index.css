@@ -8,7 +8,7 @@
     background-color: #212121;
 }
 .bg-my-h2-top-color{
-    background-color: #0D7377;
+    background-color: #2d3e6d;
     
 }
 .border{
@@ -33,6 +33,9 @@
     text-align: justify;
     
 }
-.bg-gradient{
-    border-radius: 7px;
+@media (max-width: 575px){
+    .margin-sm-leftlright{
+        margin-left: 8%;
+        margin-right: 8%;
+    }
 }
