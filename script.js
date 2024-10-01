@@ -1,10 +1,40 @@
-// Realizamos una operación en JavaScript
-let a = 10;
-let b = 20;
-let suma = a + b;
+var company = {
+ name: 'Blanzy Corp.',
+ ceo: {
+  fistName: 'Samuel'
+ }
 
-// Seleccionamos el elemento donde queremos mostrar el resultado
-let elementoResultado = document.getElementById("resultado");
+}
 
-// Cambiamos el contenido de texto del elemento
-elementoResultado.textContent = "El resultado de la suma es: " + suma;
+document.write(company.ceo.fistName, company.name)
+console.log(company.ceo)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
