@@ -1,61 +1,91 @@
-
-
-function sumarInputs() {
- var num1 = parseFloat(document.getElementById('num1').value);
- var num2 = parseFloat(document.getElementById('num2').value);
- var num2 = parseFloat(document.getElementById('num2').value);
- var suma = num1 + num2;
+function suma(){
+ var pn = document.getElementById('pn').value;
+ var sn = document.getElementById('sn').value;
+ localStorage.setItem('rsu', parseFloat(pn) + parseFloat(sn));
  
- document.getElementById('resultadoSuma').innerText = 'La suma es: ' + suma;
+ var st1 = document.getElementById('suma').value;
+ if (st1 === true){
+  var st = 1;
+  var rt = 0;
+  var mt = 0;
+  var dt = 0;
+
+  localStorage.setItem('st', st);
+  localStorage.setItem('rt', rt);
+  localStorage.setItem('mt', mt);
+  localStorage.setItem('dt', dt);
+
+  localStorage.setItem('rre', '0')
+  localStorage.setItem('rmu', '0')
+  localStorage.setItem('rdi', '0')
+ }
 }
 
 
+function resta(){
+ var pn = document.getElementById('pn').value;
+ var sn = document.getElementById('sn').value;
+ localStorage.setItem('rre', parseFloat(pn) - parseFloat(sn));
 
-
-
-
-
-
-function suma() {
- var pn = parseFloat(document.getElementById('pn').value);
- var sn = parseFloat(document.getElementById('sn').value);
- var suma = document.getElementById('suma').value;
- 
+ var rre = parseFloat(pn) + parseFloat(sn);
 }
 
 
-
-
-function resta() {
- var pn = parseFloat(document.getElementById('pn').value);
- var sn = parseFloat(document.getElementById('sn').value);
- var resta = document.getElementById('resta').value;
- 
+function multiplicacion(){
+ var pn = document.getElementById('pn').value;
+ var sn = document.getElementById('sn').value;
+ var rmu = parseFloat(pn) + parseFloat(sn);
 }
 
 
-
-
-function multiplicacion() {
- var pn = parseFloat(document.getElementById('pn').value);
- var sn = parseFloat(document.getElementById('sn').value);
- var multi = document.getElementById('multi').value;
- 
-}
-
-x = "hola";
-
-
-function divicion() {
- var pn = parseFloat(document.getElementById('pn').value);
- var sn = parseFloat(document.getElementById('sn').value);
- var divi = document.getElementById('divi').value;
- 
+function divicion(){
+ var pn = document.getElementById('pn').value;
+ var sn = document.getElementById('sn').value;
+ var rdi = parseFloat(pn) + parseFloat(sn);
 }
 
 
-function mosrar(){
- document.getElementById('resultado').textContent = x;
+function mostrar(){
+ var st = localStorage.getItem('st');
+ var rt = localStorage.getItem('rt');
+ var mt = localStorage.getItem('mt');
+ var dt = localStorage.getItem('dt');
+
+ var rsu = localStorage.getItem('rsu');
+ var rre = localStorage.getItem('rre');
+ var rmu = localStorage.getItem('rmu');
+ var rdi = localStorage.getItem('rdi');
+
+
+
+
+
+ if (st = 1){
+ document.getElementById('resultado').textContent = rsu;
+ localStorage.clear();
+ return;
+
+
 }
+ if (rt = 1){
+ document.getElementById('resultado').textContent = rre;
+ localStorage.clear();
+ return;
 
 
+}
+ if (mt = 1){
+ document.getElementById('resultado').textContent = rmu;
+ localStorage.clear();
+ return;
+
+
+}
+ if (dt = 1){
+ document.getElementById('resultado').textContent = rdi;
+ localStorage.clear();
+ return;
+
+
+ }
+}

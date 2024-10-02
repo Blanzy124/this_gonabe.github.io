@@ -40,23 +40,23 @@
 <div class="container">
  <div class="row text-center">
   <div class="mb-2 col-6 col-sm-6 col-md-2 col-4 col-lg-2 col-xl-2  col-xxl-2 ">
-  <input type="number" class="form-control" id="pn"  aria-label="Text input with dropdown button">
+  <input type="number" class="form-control" id="pn"  aria-label="Text input">
   </div>
   <div class="mb-2 col-6 col-sm-6 col-md-2 col-4 col-lg-2 col-xl-2  col-xxl-2 ">
-   <input type="number" class="form-control" id="sn"  aria-label="Text input with dropdown button">
+   <input type="number" class="form-control" id="sn"  aria-label="Text input">
   </div>
  <div class="row text-center">
   <div class="col-6 col-sm-6 col-md-2 col-4 col-lg-2 col-xl-2  col-xxl-2">
    <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Dropdown</button>
   <ul class="dropdown-menu dropdown-menu-end">
-    <li><input onclick="suma()" type="button" id="suma">Suma</li>
-    <li><input onclick="resta()" type="button" id="resta">Resta</li>
-    <li><input onclick="multiplicacion()" type="button" id="multi">Multiplicacion</li>
-    <li><input onclick="divicion()" type="button" id="divi">Divicion</li>
+    <li><button id="suma" type="number" onclick="suma()">Suma</button></li>
+    <li><button id="resta" type="number" onclick="resta()">Resta</button></li>
+    <li><button id="multiplicacion" type="number" onclick="multiplicacion()">Multiplicaion</button></li>
+    <li><button id="divicion" type="number" onclick="divicion()">Divicion</button></li>
   </ul>
   </div>
    <div class="col-6 col-sm-6 col-md-2 col-4 col-lg-2 col-xl-2  col-xxl-2">
-     <button onclick="mosrar()">Resultado</button>
+     <button onclick="mostrar()">Resultado</button> <!--on click shows a function-->
    </div>
   <div class="row text-center">
    <div class="border border-4 rounded-pill mt-2 col-6 col-sm-6 col-md-2 col-4 col-lg-2 col-xl-2  col-xxl-2">
@@ -66,5 +66,3 @@
   </div>
  </div> 
 </div>
-
-
