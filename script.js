@@ -128,6 +128,10 @@ function calcular(){
   var sn =  parseFloat(document.getElementById('sn').value);
   console.log(sn);
 
+  if (isNaN(pn) || isNaN(sn)){
+    document.getElementById('invalid').textContent = ('!You must put 2 numbers!')
+  }
+
   switch (operacion){
     case 'suma':{
       var resultado = pn + sn; break;}
@@ -140,17 +144,21 @@ function calcular(){
 
     case 'divi':{
       if (sn === 0){
-        document.getElementById('invalid').textContent = 'Error, you can`t divide by 0';
+        document.getElementById('invalid').textContent = '!Error, you can`t divide by 0!';
         return;
       }
       var resultado = pn / sn; break;}
 
   }
-    console.log(resultado);
 
       
+    if (isNaN(resultado)){
+      document.getElementById('resultado').textContent = '!Enter the numbers!'
+    }
+    else {
+      document.getElementById('resultado').textContent = resultado;
+    }
 
-    document.getElementById('resultado').textContent = resultado;
   
 
 
