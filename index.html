@@ -47,21 +47,22 @@
   </div>
  <div class="row text-center">
   <div class="col-6 col-sm-6 col-md-2 col-4 col-lg-2 col-xl-2  col-xxl-2">
-   <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Dropdown</button>
+   <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Ecuacion</button>
   <ul class="dropdown-menu dropdown-menu-end">
-    <li><button id="suma" type="number" onclick="suma()">Suma</button></li>
-    <li><button id="resta" type="number" onclick="resta()">Resta</button></li>
-    <li><button id="multiplicacion" type="number" onclick="multiplicacion()">Multiplicaion</button></li>
-    <li><button id="divicion" type="number" onclick="divicion()">Divicion</button></li>
+    <li><button id="suma" type="number" onclick="guardar_operacion('suma')">Suma</button></li>
+    <li><button id="resta" type="number" onclick="guardar_operacion('rest')">Resta</button></li>
+    <li><button id="multiplicacion" type="number" onclick="guardar_operacion('mult')">Multiplicaion</button></li>
+    <li><button id="divicion" type="number" onclick="guardar_operacion('divi')">Divicion</button></li>
   </ul>
   </div>
    <div class="col-6 col-sm-6 col-md-2 col-4 col-lg-2 col-xl-2  col-xxl-2">
-     <button onclick="mostrar()">Resultado</button> <!--on click shows a function-->
+     <button onclick="calcular()">Resultado</button> <!--on click shows a function-->
    </div>
   <div class="row text-center">
    <div class="border border-4 rounded-pill mt-2 col-6 col-sm-6 col-md-2 col-4 col-lg-2 col-xl-2  col-xxl-2">
-    <p id="resultado" class="tcol-6 col-sm-6 col-md-2 col-4 col-lg-2 col-xl-2  col-xxl-2"></p>
+    <p id="resultado" class="col-6 col-sm-6 col-md-2 col-4 col-lg-2 col-xl-2  col-xxl-2">Result: </p>
    </div>
+   <span id="invalid" class="col-6 col-sm-6 col-md-2 col-4 col-lg-2 col-xl-2  col-xxl-2"></span>
  </div>
   </div>
  </div> 
