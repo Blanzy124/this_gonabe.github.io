@@ -13,6 +13,42 @@
 .back-color{
     background-color: rgb(205, 205, 205);
 }
+
+/*Image style starts*/
+.bg-image{
+    background-image: url('backgroindspic/PC-BG.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 90%;
+    position: relative;
+}
+@media(max-height: 900px){
+    .bg-image{
+        height: 50%;
+    }
+}
+.content {
+  position: absolute;
+  color: rgb(255, 255, 255);
+  background-color: rgba(0, 0, 0, 0.1); /* Fondo semi-transparente */
+  padding: 20px;
+  width: 100%;
+  border-radius: 10px;
+  font-family: "Nanum Gothic Coding", monospace;
+  font-weight: 400;
+  font-style: normal;
+}
+.name-image{
+    
+
+}
+/*Image style ends*/
+
+
+
+
+/*Short History*/
 .bg-my-h2-top-color{
     background-color: #2d3e6d;
     box-shadow: 4px 7px 10px 0.9px;
@@ -29,11 +65,7 @@
     border-color: #14FFEC;
 }
 /*Font*/
-.name-font {
-    font-family: "Bebas Neue", sans-serif;
-    font-weight: 400;
-    font-style: normal;
-  }
+
 .h2-titles{
     color:white;
     font-size: 220%;
@@ -49,7 +81,68 @@
 }
 @media (max-width: 575px){
     .margin-sm-leftlright{
-        margin-left: 8%;
-        margin-right: 8%;
+        margin-left: 5%;
+        margin-right: 5%;
     }
+}
+/*Short Hitory Ends*/
+
+
+/*calculator start*/
+
+.cal-desing{
+    background-color: rgb(163, 189, 199);
+}
+
+.inputs-desing{
+    border: 3px double rgb(81, 167, 238);
+    border-radius: 5px;
+    box-shadow: 3px 3px 10px 2px;
+}
+.inputs-desing:hover{
+    border: 2px double rgb(81, 167, 238);
+    border-radius: 5px;
+    box-shadow: 1px 1px 10px 0.5px;
+}
+.inputs-desing:hover{
+    border: 2px double rgb(81, 167, 238);
+    border-radius: 5px;
+    box-shadow: 1px 1px 10px 0.5px;
+}.inputs-desing:focus{
+    border: 2px double rgb(81, 167, 238);
+    border-radius: 5px;
+    box-shadow: 1px 1px 10px 0.5px;
+}
+.drop-font{
+    font-family: "Roboto Slab", serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+}
+.btn{
+    box-shadow: 1px 1px 6px 0.1px;
+    
+   
+}
+.btn:hover{
+    box-shadow: 1px 1px 6px 0.1px black;
+   
+}
+.btn:focus{
+    box-shadow: 1px 1px 6px 0.1px black;
+   
+}
+.resultado-desing{
+    font-family: "Roboto Slab", serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+}
+.result-desing{
+    font-family: "Roboto Slab", serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+}
+.error-mensage{
+    font-family: "Roboto Slab", serif;
+  font-optical-sizing: auto;
+  font-style: normal;
 }
