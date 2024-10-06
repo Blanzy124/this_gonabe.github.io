@@ -1,3 +1,5 @@
+
+//Calculator starts
 function guardar_operacion(operacion){
  localStorage.setItem('operacionSelecionada', operacion)
  console.log(localStorage.getItem('operacionSelecionada'));
@@ -41,10 +43,21 @@ function calcular(){
    else {
      document.getElementById('resultado').textContent = resultado;
    }
-
- 
-
-
-
-
 }
+//Calculators ends
+
+//data base starts
+
+var company = {
+  name: 'Blanzy Corp.',
+  ceo: {
+    namme: 'Samuel',
+    lastName: 'Medina Blandon',
+    age: '19',
+    dateOdBirth: '01/12/2005',
+  },
+  
+}
+
+
+
