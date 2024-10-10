@@ -2,16 +2,15 @@
 //Calculator starts
 function guardar_operacion(operacion){
  localStorage.setItem('operacionSelecionada', operacion)
- console.log(localStorage.getItem('operacionSelecionada'));
 }
 
 function calcular(){
  var operacion = localStorage.getItem('operacionSelecionada');
- console.log(operacion);
+
  var pn = parseFloat(document.getElementById('pn').value);
- console.log(pn);
+
  var sn =  parseFloat(document.getElementById('sn').value);
- console.log(sn);
+
 
  if (isNaN(pn) || isNaN(sn)){
    document.getElementById('invalid').textContent = ('!You must put 2 numbers!')
@@ -46,52 +45,17 @@ function calcular(){
 
    
 //History of Calculator starts
-
-chi++;
-hresultados.push(chi);
 hresultados.push(resultado);
-
-
-document.getElementById('id-number').textContent = hresultados.id;
-console.log(hresultados.id)
-document.getElementById('result-operation').textContent = hresultados;
-console.log(hresultados.resultados)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+var shoHis = document.getElementById('result-operation');
+var tu = document.createElement('p');
+tu.textContent = chi++ + ' | ' +  String(hresultados[hresultados.length - 1]);
+shoHis.appendChild(tu);
+}
+var chi = 1;
+var hresultados = [];
+console.log(hresultados);
 
 //Histor of calculator ends
-
-
-
-
-
-}
-var chi = 0;
-var hresultados = [];
-
-
 
 
 
