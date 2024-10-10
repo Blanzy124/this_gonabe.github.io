@@ -43,21 +43,61 @@ function calcular(){
    else {
      document.getElementById('resultado').textContent = resultado;
    }
+
+   
+//History of Calculator starts
+
+chi++;
+hresultados.push(chi);
+hresultados.push(resultado);
+
+
+document.getElementById('id-number').textContent = hresultados.id;
+console.log(hresultados.id)
+document.getElementById('result-operation').textContent = hresultados;
+console.log(hresultados.resultados)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//Histor of calculator ends
+
+
+
+
+
 }
+var chi = 0;
+var hresultados = [];
+
+
+
+
+
 //Calculators ends
 
-//data base starts
 
-var company = {
-  name: 'Blanzy Corp.',
-  ceo: {
-    namme: 'Samuel',
-    lastName: 'Medina Blandon',
-    age: '19',
-    dateOdBirth: '01/12/2005',
-  },
-  
-}
 
 
 

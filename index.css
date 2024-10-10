@@ -156,13 +156,45 @@
 
 
 
-/*Coments Starts*/
-.coments-desing{
+/*istory of calculator starts*/
+.history-desing{
     background-color: #14FFEC;
     border: solid rgb(29, 53, 53)
     ;
 }
+.top-history{
+    background-color: white;
+    border-bottom: solid black;
+}
+.backToTop{
+    text-decoration: none;
+    
+}
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*History of calculator ends*/
 
 
 
