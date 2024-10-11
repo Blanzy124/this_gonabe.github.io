@@ -109,12 +109,9 @@
     border: 2px double rgb(81, 167, 238);
     border-radius: 5px;
     box-shadow: 1px 1px 10px 0.5px;
+    
 }
-.inputs-desing:hover{
-    border: 2px double rgb(81, 167, 238);
-    border-radius: 5px;
-    box-shadow: 1px 1px 10px 0.5px;
-}.inputs-desing:focus{
+.inputs-desing:focus{
     border: 2px double rgb(81, 167, 238);
     border-radius: 5px;
     box-shadow: 1px 1px 10px 0.5px;
@@ -171,33 +168,11 @@
     text-decoration: none;
     
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /*History of calculator ends*/
 
-
+.holaque{
+    
+}
 
 
 
