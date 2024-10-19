@@ -1,42 +1,55 @@
 // Animation for the 3 boxes starts
-function callback(entries){
-  console.log('llamando al callback')
-}
 
+
+
+
+
+
+
+
+
+const resus = document.querySelectorAll('.resume');
+
+function onAnimation(entries) {
+  entries.forEach(entry => {
+    entry.target.classList.toggle('unset', entry.isIntersecting);
+  });
+}
 const options ={
   root: null,
   rootMargin: '0px',
-  threshold: 0
+  threshold: 0.1
 }
 
+const observer = new IntersectionObserver(onAnimation, options);
 
-const observer = new IntersectionObserver(callback, options);
-const element = document.querySelector('.element');
-
-observer.observe(element);
-
-
+resus.forEach(resu =>{
+  observer.observe(resu);
+})
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+//ESTE SE PUEDE USAR PARA IMAGENES!
+//const resus = document.querySelectorAll('.resume');
+//
+//function onAnimation(entries){
+//  entries.forEach(entry =>{
+//    const resu = entry.target.querySelector('div');
+//  
+//    resu.classList.toggle('unset', entry.isIntersecting);
+//  })
+//}
+//
+//const options ={
+//  root: null,
+//  rootMargin: '0px',
+//  threshold: 1
+//}
+//
+//const observer = new IntersectionObserver(onAnimation, options);
+//
+//resus.forEach(resu =>{
+//  observer.observe(resu);
+//})
 
 
 
@@ -118,7 +131,7 @@ shoHis.appendChild(tu);
 }
 var chi = 1;
 var hresultados = [];
-console.log(hresultados);
+
 
 //Histor of calculator ends
 
