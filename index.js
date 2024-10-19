@@ -1,3 +1,57 @@
+// Animation for the 3 boxes starts
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// Animation for the 3 boxes end
 
 //Calculator starts
 function guardar_operacion(operacion){
