@@ -39,16 +39,12 @@
   font-weight: 400;
   font-style: normal;
 }
-.name-image{
-    
-
-}
 /*Image style ends*/
 
 
 
 
-/*Short History*/
+/*Short History starts*/
 .bg-my-h2-top-color{
     background-color: #2d3e6d;
     box-shadow: 4px 7px 10px 0.9px;
@@ -87,6 +83,52 @@
 }
 /*Short Hitory Ends*/
 
+/*Animation history starts*/
+[data-animation="fade"] {
+    opacity: 0;
+    transform: translate(100%);
+    transition: .6s ease-in .3s;
+
+    --opacity: 1 ;
+    --transform: translate(0);
+
+}
+
+.unset {
+    opacity: var(--opacity);
+    transform: var(--transform);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*Animation history starts*/
 
 /*calculator start*/
 

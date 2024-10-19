@@ -1,8 +1,19 @@
 // Animation for the 3 boxes starts
+function callback(entries){
+  console.log('llamando al callback')
+}
+
+const options ={
+  root: null,
+  rootMargin: '0px',
+  threshold: 0
+}
 
 
+const observer = new IntersectionObserver(callback, options);
+const element = document.querySelector('.element');
 
-
+observer.observe(element);
 
 
 
