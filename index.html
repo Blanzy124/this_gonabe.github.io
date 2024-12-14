@@ -18,6 +18,21 @@
             @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Castoro+Titling&family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&family=Protest+Guerrilla&display=swap');
          </style>
     </head>
+    <script type="module">
+        fetch('http://localhost:1235/coments')
+        .then(res => res.json())
+        .then(coments => {
+         const html = coments.map(coment => {
+          return `<article data-id="${coment.id}">
+                 <h2>${coment.name}</h2>
+                 <p>${coment.coment}</p>
+                 <span>${coment.age}</span>
+                 </article>
+                `
+         }).join('')
+         document.querySelector('main').innerHTML = html
+        })
+       </script>
     <body>
         <script src="index.js" async defer></script>
     </body>
@@ -208,6 +223,10 @@
         </div>
     </div>
     <!--calculator ends-->
+
+    <main>
+
+    </main>
    </footer>
 
 
