@@ -23,7 +23,7 @@
         .then(res => res.json())
         .then(coments => {
          const html = coments.map(coment => {
-          return `<article data-id="${coment.id}">
+          return `<article data-id="${coment.bin_to_uuid(id)}">
                  <h2>${coment.name}</h2>
                  <p>${coment.coment}</p>
                  <span>${coment.age}</span>
