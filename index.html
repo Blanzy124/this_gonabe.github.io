@@ -22,12 +22,12 @@
         fetch('http://152.67.231.147:1235/coments')
         .then(res => res.json())
         .then(coments => {
-         const html = coments.map(coment => {
-          return `<article data-id="${coment.bin_to_uuid(id)}">
+            const html = coments.map(coment => {
+             return `
                  <h2>${coment.name}</h2>
                  <p>${coment.coment}</p>
                  <span>${coment.age}</span>
-                 </article>
+                 
                 `
          }).join('')
          document.querySelector('main').innerHTML = html
