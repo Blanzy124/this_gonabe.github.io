@@ -1,5 +1,6 @@
 // Animation for the 3 boxes starts
 
+
 const resus = document.querySelectorAll('.resume');
 
 function onAnimation(entries) {
@@ -109,17 +110,45 @@ fetch('http://152.67.231.147:1235/coments')
 .then(coments => {
     const html = coments.map(coment => {
      return `
-         <h2>${coment.name}</h2>
-         <p>${coment.coment}</p>
-         <span>${coment.age}</span>
-         
+            <div class="container-fluid mt-3">
+                <div class="row ">
+                    <h5 class="coment-name align-items-center d-flex justify-content-start col-4 col-sm-4 col-xl-2">${coment.name}</h5><h6 class="coment-age align-items-center d-flex justify-content-start col-8 col-sm-8 col-xl-10">${coment.age}</h6>
+                    <p class="coment-text align-items-center d-flex justify-content-start col-12">${coment.coment}</p>
+                </div>    
+            </div>
         `
  }).join('')
- document.querySelector('mai').innerHTML = html
+ document.querySelector('main').innerHTML = html
 })
 
+document.addEventListener('submit', function(event) {
+  event.preventDefault();
+  const nombre = document.getElementById('nombre').value;
+  const edad = document.getElementById('edad').value;
+  const comentario = document.getElementById('comentario').value;
 
+  const newComent = [{
+    "coment": `"${comentario}"`,
+    "name": `"${nombre}"`,
+    "age": `"${edad}"`
+  }]
 
+  const postComent = async () => {
+    try{
+      const resp = await fetch ('http://152.67.231.147:1235/coments', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(newComent)
+      })
+      if(resp.ok){
+        console.log(resp.json())
+      }
+    }catch(error){
+      console.log(error)
+    }
+  }
+  postComent()
+});
 
 
 

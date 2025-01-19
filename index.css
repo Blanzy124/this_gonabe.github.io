@@ -242,7 +242,20 @@
     background-color: wheat;
 }
 
-
+.coment-name{
+    font-size: small;
+    font-weight:bolder;
+    border-left: solid 2px;
+    
+}
+.coment-age{
+    font-size: small;
+    border-left: solid 2px;
+}
+.coment-text{
+    font-size: medium;
+    border-left: solid 2px;
+}
 
 
 
