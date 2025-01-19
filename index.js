@@ -1,13 +1,5 @@
 // Animation for the 3 boxes starts
 
-
-
-
-
-
-
-
-
 const resus = document.querySelectorAll('.resume');
 
 function onAnimation(entries) {
@@ -26,8 +18,6 @@ const observer = new IntersectionObserver(onAnimation, options);
 resus.forEach(resu =>{
   observer.observe(resu);
 })
-
-
 //ESTE SE PUEDE USAR PARA IMAGENES!
 //const resus = document.querySelectorAll('.resume');
 //
@@ -51,31 +41,9 @@ resus.forEach(resu =>{
 //  observer.observe(resu);
 //})
 
+// Animation for the 3 boxes ends
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// Animation for the 3 boxes end
 
 //Calculator starts
 function guardar_operacion(operacion){
@@ -134,10 +102,31 @@ var hresultados = [];
 
 
 //Histor of calculator ends
-
-
-
 //Calculators ends
+
+fetch('http://152.67.231.147:1235/coments')
+.then(res => res.json())
+.then(coments => {
+    const html = coments.map(coment => {
+     return `
+         <h2>${coment.name}</h2>
+         <p>${coment.coment}</p>
+         <span>${coment.age}</span>
+         
+        `
+ }).join('')
+ document.querySelector('mai').innerHTML = html
+})
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -42,7 +42,7 @@
 
 
 
-/*Short History starts*/
+/*Show History starts*/
 .bg-my-h2-top-color{
     background-color: #2d3e6d;
     box-shadow: 4px 7px 10px 0.9px;
@@ -79,7 +79,7 @@
         margin-right: 5%;
     }
 }
-/*Short Hitory Ends*/
+/*Show Hitory Ends*/
 
 /*Animation history starts*/
 [data-animation="work"] {
@@ -152,25 +152,6 @@
     }
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /*Animation history starts*/
 
 /*calculator start*/
@@ -238,7 +219,7 @@
 
 
 
-/*istory of calculator starts*/
+/*history of calculator starts*/
 .history-desing{
     background-color: #14FFEC;
     border: solid rgb(29, 53, 53);
@@ -255,13 +236,11 @@
 }
 /*History of calculator ends*/
 
-.holaque{
-    
+
+/*Coments Start*/ 
+.coments-desing{
+    background-color: wheat;
 }
-
-
-
-
 
 
 
