@@ -116,38 +116,42 @@ fetch('http://152.67.231.147:1235/coments')
                     <p class="coment-text align-items-center d-flex justify-content-start col-12">${coment.coment}</p>
                 </div>    
             </div>
+            <hr class="coment-hr">
         `
  }).join('')
  document.querySelector('main').innerHTML = html
 })
 
-document.addEventListener('submit', function(event) {
+document.getElementById('miFormulario').addEventListener('submit', function(event) {
   event.preventDefault();
   const nombre = document.getElementById('nombre').value;
-  const edad = document.getElementById('edad').value;
+  const edad = parseInt(document.getElementById('edad').value);
   const comentario = document.getElementById('comentario').value;
 
-  const newComent = [{
-    "coment": `"${comentario}"`,
-    "name": `"${nombre}"`,
-    "age": `"${edad}"`
-  }]
+  const newComent = {
+    "coment": comentario,
+    "name": nombre,
+    "age": edad
+  };
 
   const postComent = async () => {
-    try{
-      const resp = await fetch ('http://152.67.231.147:1235/coments', {
+    try {
+      const resp = await fetch('http://152.67.231.147:1235/coments', {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify(newComent)
-      })
-      if(resp.ok){
-        console.log(resp.json())
+      });
+      if (resp.ok) {
+        const show = await resp.json();
+        console.log(show);
+      } else {
+        console.error('Error en la solicitud:', resp.status, resp.statusText);
       }
-    }catch(error){
-      console.log(error)
+    } catch (error) {
+      console.log('Error en el fetch:', error);
     }
-  }
-  postComent()
+  };
+  postComent();
 });
 
 
