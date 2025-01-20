@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Fira+Code:wght@300..700&family=Geist+Mono:wght@100..900&family=Lexend+Giga:wght@100..900&family=Orbitron&family=Roboto+Slab:wght@100..900&display=swap');
 
 * {
     box-sizing: border-box;
@@ -241,20 +242,48 @@
 .coments-desing{
     background-color: wheat;
 }
+/*Coment post start*/
+.header-coment-section{
+    font-size: 20px;
+    font-family: "Orbitron", serif;
+    font-weight: bolder;
+    font-style: normal;
+}
+.placeHolder-stile{
+    font-size: 20px;
+    font-family: "Lexend Giga", serif;
+    font-weight: bolder;
+    font-style: normal;
+}
+/*Coment post end*/
 
 .coment-name{
-    font-size: small;
+    font-family: "Play", serif;
+    font-weight: 900;
+    font-style: normal;
+    font-size: 17px;
     font-weight:bolder;
     border-left: solid 2px;
     
 }
 .coment-age{
-    font-size: small;
+    font-family: "Play", serif;
+    font-weight: 900;
+    font-style: normal;
+    font-size: 17px;
+    font-weight:bolder;
     border-left: solid 2px;
 }
 .coment-text{
-    font-size: medium;
-    border-left: solid 2px;
+    font-size: 15px;
+    font-family: "Lexend Giga", serif;
+    font-weight: 300;
+    font-style: normal;
+}
+#send-botton-stile{
+    font-family: "Orbitron", serif;
+    font-weight: 300;
+    font-style: italic;
 }
 .coment-hr{
     color: rgb(55, 100, 4);
