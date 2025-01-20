@@ -123,7 +123,6 @@ fetch('http://152.67.231.147:1235/coments')
 })
 
 document.getElementById('miFormulario').addEventListener('submit', function(event) {
-  event.preventDefault();
   const nombre = document.getElementById('nombre').value;
   const edad = parseInt(document.getElementById('edad').value);
   const comentario = document.getElementById('comentario').value;
@@ -153,6 +152,7 @@ document.getElementById('miFormulario').addEventListener('submit', function(even
   };
   postComent();
 });
+
 
 
 
