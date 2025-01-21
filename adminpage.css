@@ -34,11 +34,10 @@
  font-weight: 300;
  font-style: normal;
 }
-#send-botton-stile{
- font-family: "Orbitron", serif;
- font-weight: 300;
- font-style: italic;
+#green-button-deleted{
+ background-color: green;
 }
+
 .coment-hr{
  color: rgb(55, 100, 4);
 }

@@ -124,6 +124,7 @@ fetch('http://152.67.231.147:1235/coments')
 })
 
 document.getElementById('miFormulario').addEventListener('submit', function(event) {
+  event.preventDefault()
   const nombre = document.getElementById('nombre').value;
   const edad = parseInt(document.getElementById('edad').value);
   const comentario = document.getElementById('comentario').value;
@@ -143,7 +144,8 @@ document.getElementById('miFormulario').addEventListener('submit', function(even
       });
       if (resp.ok) {
         const show = await resp.json();
-        console.log(show);
+        console.log(show)
+        window.location.reload();
       } else {
         console.error('Error en la solicitud:', resp.status, resp.statusText);
       }
