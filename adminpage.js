@@ -24,21 +24,43 @@ fetch('http://152.67.231.147:1235/coments')
 
 document.addEventListener('click', function(event) {
 if(event.target.matches('button.send-button')){
-  
+  const userName = document.getElementById('userName').value;
+  const userPassword = document.getElementById('userPassword').value;
+///////
+  async function userAutentication(userName, userPassword){
+    const resp = await fetch(`http://152.67.231.147:1235/users?name=${userName}&userPassword=${userPassword}`)
+    const userJson = await resp.json();
+   if(userJson.message === 'User do not exit, wrong user name or password'){
+    console.log('si lo detecto')
+    return
+   }
+   if(resp.ok === false){
+    console.log('Bad request ',resp.ok)
+    return
+   }
+    else{
+      console.log(userJson[0].name, userJson[0].userStatus)
+      const buttons = document.querySelectorAll('button.btn-danger');
+      buttons.forEach(button => {
+        button.disabled = false;
+      });
+      console.log('button send pressed') 
 
 
-    const buttons = document.querySelectorAll('button.btn-danger');
-            buttons.forEach(button => {
-              button.disabled = false;
-            });
-            console.log('button send pressed') 
-
-
+      return
+    }
   }
+  userAutentication(userName, userPassword)
+}
 });
+/////
+
 document.addEventListener('click', function(event) {
  if (event.target && event.target.matches('button.btn-danger')) {
    const botonId = event.target.getAttribute('data-id');
+   const boton = document.querySelector(`[data-id='${botonId}']`);
+   boton.disabled = true;
+
    const deleteComent = async (id) => {
     try{
      const resp = await fetch(`http://152.67.231.147:1235/coments/${id}`, {
@@ -51,7 +73,7 @@ document.addEventListener('click', function(event) {
       const coment = await resp.json()
       const comentStatus = coment["message"];
       if(comentStatus === `Coment has been deleted`){
-        window.location.reload()
+        //window.location.reload()
       }
       console.log(comentStatus)
       return comentStatus
