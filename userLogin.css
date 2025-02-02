@@ -1,0 +1,64 @@
+/* Fuente personalizada */
+body {
+ font-family: 'Poppins', sans-serif;
+ background-color: #f8f9fa;
+}
+
+/* Estilo de la tarjeta */
+.custom-card {
+ border: none;
+ border-radius: 12px;
+ background-color: #ffffff;
+ transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+}
+
+.custom-card:hover {
+ transform: translateY(-5px);
+ box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Estilo de los inputs */
+.custom-input {
+ border: 1px solid #ddd;
+ border-radius: 8px;
+ padding: 10px;
+ transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.custom-input:focus {
+ border-color: #007bff;
+ box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+ outline: none;
+}
+
+/* Estilo de los botones */
+.custom-btn {
+ border-radius: 8px;
+ padding: 10px;
+ font-weight: 500;
+ transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.custom-btn:hover {
+ transform: translateY(-2px);
+}
+
+.btn-primary.custom-btn {
+ background-color: #007bff;
+ border: none;
+}
+
+.btn-primary.custom-btn:hover {
+ background-color: #0056b3;
+}
+
+.btn-outline-secondary.custom-btn {
+ border: 1px solid #007bff;
+ color: #007bff;
+}
+
+.btn-outline-secondary.custom-btn:hover {
+ background-color: #ffffff;
+ color: #000000;
+}
