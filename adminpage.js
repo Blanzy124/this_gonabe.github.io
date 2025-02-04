@@ -1,4 +1,5 @@
-
+const cookies = document.cookie;
+console.log(cookies)
 var idr = 0;
 fetch('http://152.67.231.147:1235/coments')
 .then(res => res.json())

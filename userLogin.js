@@ -1,3 +1,6 @@
+const cookies = document.cookie;
+console.log(cookies)
+
 document.addEventListener('click', function(event) {
  if(event.target.matches('button.btn-primary')){
   const userName = document.getElementById('userName').value;
@@ -10,9 +13,8 @@ document.addEventListener('click', function(event) {
   else{
   event.preventDefault()
  async function userAutentication(userName, userPassword){
-  const resp = await fetch(`http://152.67.231.147:1235/users?name=${userName}&userPassword=${userPassword}`)
+  const resp = await fetch(`http://localhost:1235/users?name=${userName}&userPassword=${userPassword}`)
   const userJson = await resp.json();
-  console.log(userJson, 'wadwa')
  if(userJson.message === 'User do not exit, wrong user name or password'){
   console.log('si lo detecto')
   return
@@ -22,9 +24,25 @@ document.addEventListener('click', function(event) {
   return
  }
   else{
-    console.log('button send pressed', userJson) 
- 
- 
+    const setCookie = async () => {
+      try {
+        const resp = await fetch('http://localhost:1235/setCookie', {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify({ userNameCookie: userName })
+        });
+        if (resp.ok) {
+          const show = await resp.json();
+          console.log(show[0])
+          //window.location.href = "./blangym.html"
+        } else {
+          console.error('Error en la solicitud:', resp.status, resp.statusText);
+        }
+      } catch (error) {
+        console.log('Error en el fetch:', error);
+      }
+    };
+    setCookie();
     return
   }
  }

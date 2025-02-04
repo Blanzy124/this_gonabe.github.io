@@ -1,5 +1,6 @@
 // Animation for the 3 boxes starts
-
+const cookies = document.cookie;
+console.log(cookies)
 
 const resus = document.querySelectorAll('.resume');
 
