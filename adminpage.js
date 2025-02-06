@@ -1,7 +1,7 @@
 const cookies = document.cookie;
 console.log(cookies)
 var idr = 0;
-fetch('http://152.67.231.147:1235/coments')
+fetch('https://152.67.231.147:1235/coments')
 .then(res => res.json())
 .then(coments => {
     const html = coments.map(coment => {
@@ -29,7 +29,7 @@ if(event.target.matches('button.send-button')){
   const userPassword = document.getElementById('userPassword').value;
 ///////
   async function userAutentication(userName, userPassword){
-    const resp = await fetch(`http://152.67.231.147:1235/users?name=${userName}&userPassword=${userPassword}`)
+    const resp = await fetch(`https://152.67.231.147:1235/users?name=${userName}&userPassword=${userPassword}`)
     const userJson = await resp.json();
    if(userJson.message === 'User do not exit, wrong user name or password'){
     console.log('si lo detecto')
@@ -64,7 +64,7 @@ document.addEventListener('click', function(event) {
 
    const deleteComent = async (id) => {
     try{
-     const resp = await fetch(`http://152.67.231.147:1235/coments/${id}`, {
+     const resp = await fetch(`https://152.67.231.147:1235/coments/${id}`, {
       method: 'DELETE',
       headers: {'Content-Type': 'application/json'},
     }
