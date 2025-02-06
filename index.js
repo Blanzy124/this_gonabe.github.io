@@ -106,7 +106,7 @@ var hresultados = [];
 //Histor of calculator ends
 //Calculators ends
 
-fetch('https://152.67.231.147:1235/coments')
+fetch('https://blanzynetwork.org:8443/coments')
 .then(res => res.json())
 .then(coments => {
     const html = coments.map(coment => {
@@ -138,7 +138,7 @@ document.getElementById('miFormulario').addEventListener('submit', function(even
 
   const postComent = async () => {
     try {
-      const resp = await fetch('https://152.67.231.147:1235/coments', {
+      const resp = await fetch('https://blanzynetwork.org:8443/coments', {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify(newComent)

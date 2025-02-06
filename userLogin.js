@@ -13,7 +13,7 @@ document.addEventListener('click', function(event) {
   else{
   event.preventDefault()
  async function userAutentication(userName, userPassword){
-  const resp = await fetch(`https://152.67.231.147:1235/users?name=${userName}&userPassword=${userPassword}`)
+  const resp = await fetch(`https://blanzynetwork.org:8443/users?name=${userName}&userPassword=${userPassword}`)
   const userJson = await resp.json();
  if(userJson.message === 'User do not exit, wrong user name or password'){
   console.log('si lo detecto')
@@ -26,7 +26,7 @@ document.addEventListener('click', function(event) {
   else{
     const setCookie = async () => {
       try {
-        const resp = await fetch('https://152.67.231.147:1235/setcookie', {
+        const resp = await fetch('https://blanzynetwork.org:8443/setcookie', {
           method: 'POST',
           credentials: 'include',
           headers: {'Content-Type': 'application/json'},
