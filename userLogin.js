@@ -26,8 +26,9 @@ document.addEventListener('click', function(event) {
   else{
     const setCookie = async () => {
       try {
-        const resp = await fetch('http://localhost:1235/setCookie', {
+        const resp = await fetch('http://localhost:1235/setcookie', {
           method: 'POST',
+          credentials: 'include',
           headers: {'Content-Type': 'application/json'},
           body: JSON.stringify({ userNameCookie: userName })
         });
