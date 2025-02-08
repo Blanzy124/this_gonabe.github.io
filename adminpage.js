@@ -1,7 +1,7 @@
 const cookies = document.cookie;
 console.log(cookies)
 var idr = 0;
-fetch('https://152.67.231.147:1235/coments')
+fetch('https://blanzynetwork.org:8443/coments')
 .then(res => res.json())
 .then(coments => {
     const html = coments.map(coment => {
