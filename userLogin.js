@@ -20,7 +20,7 @@ async function cookieVerify(name) {
    const loginv = await fetch(`${apiUrl}/setcookie/${cookieVerification}`)
    let loginVerification = await loginv.json()
    if(loginVerification.message == 'true'){
-    //window.location.href = './index.html'
+    window.location.href = './index.html'
    }
    else{
     console.log(loginVerification, 'login')
