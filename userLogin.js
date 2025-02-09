@@ -13,14 +13,14 @@ async function cookieVerify(name) {
  async function loginVerification() {
   let cookieVerification = await cookieVerify('cookieId')
   if(!cookieVerification){
-   window.location.href = './userLogin.html'
+   //window.location.href = './userLogin.html'
   }
   else{
    console.log(cookieVerification)
    const loginv = await fetch(`${apiUrl}/setcookie/${cookieVerification}`)
    let loginVerification = await loginv.json()
    if(loginVerification.message == 'true'){
-    window.location.href = './index.html'
+    //window.location.href = './index.html'
    }
    else{
     console.log(loginVerification, 'login')
