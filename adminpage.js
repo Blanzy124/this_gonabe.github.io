@@ -1,7 +1,40 @@
+import { apiUrl } from "./FETCHCONCTION.MJS";
+
+async function cookieVerify(name) {
+  let cookieName = name + '=';
+  let cookies = document.cookie.split('; ');
+  for(let i = 0; i < cookies.length; i++){
+   let c = cookies[i].trim();
+   if(c.indexOf(cookieName) === 0){
+    return c.substring(cookieName.length, c.length)
+   }
+  }
+  return null
+ } 
+ async function loginVerification() {
+  let cookieVerification = await cookieVerify('cookieId')
+  if(!cookieVerification){
+   window.location.href = './userLogin.html'
+  }
+  else{
+   console.log(cookieVerification)
+   const loginv = await fetch(`${apiUrl}/setcookie/${cookieVerification}`)
+   let loginVerification = await loginv.json()
+   if(loginVerification.message == 'false'){
+    window.location.href = './userLogin.html'
+   }
+   else{
+    console.log(loginVerification, 'login')
+    
+   }
+  }
+ }
+ loginVerification()
+
 const cookies = document.cookie;
 console.log(cookies)
 var idr = 0;
-fetch('https://blanzynetwork.org:8443/coments')
+fetch(`${apiUrl}/coments`)
 .then(res => res.json())
 .then(coments => {
     const html = coments.map(coment => {
@@ -29,7 +62,7 @@ if(event.target.matches('button.send-button')){
   const userPassword = document.getElementById('userPassword').value;
 ///////
   async function userAutentication(userName, userPassword){
-    const resp = await fetch(`https://blanzynetwork.org:8443/users?name=${userName}&userPassword=${userPassword}`)
+    const resp = await fetch(`${apiUrl}/users?name=${userName}&userPassword=${userPassword}`)
     const userJson = await resp.json();
    if(userJson.message === 'User do not exit, wrong user name or password'){
     console.log('si lo detecto')
@@ -64,7 +97,7 @@ document.addEventListener('click', function(event) {
 
    const deleteComent = async (id) => {
     try{
-     const resp = await fetch(`https://blanzynetwork.org:8443/coments/${id}`, {
+     const resp = await fetch(`${apiUrl}/coments/${id}`, {
       method: 'DELETE',
       headers: {'Content-Type': 'application/json'},
     }

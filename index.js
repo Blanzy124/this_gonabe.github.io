@@ -1,3 +1,4 @@
+import { apiUrl } from "./FETCHCONCTION.MJS";
 // Animation for the 3 boxes starts
 const cookies = document.cookie;
 console.log(cookies)
@@ -106,7 +107,7 @@ var hresultados = [];
 //Histor of calculator ends
 //Calculators ends
 
-fetch('https://blanzynetwork.org:8443/coments')
+fetch(`${apiUrl}/coments`)
 .then(res => res.json())
 .then(coments => {
     const html = coments.map(coment => {
@@ -138,7 +139,7 @@ document.getElementById('miFormulario').addEventListener('submit', function(even
 
   const postComent = async () => {
     try {
-      const resp = await fetch('https://blanzynetwork.org:8443/coments', {
+      const resp = await fetch('${apiUrl}/coments', {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify(newComent)

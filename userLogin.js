@@ -1,5 +1,36 @@
-const cookies = document.cookie;
-console.log(cookies)
+import { apiUrl } from "./FETCHCONCTION.MJS";
+async function cookieVerify(name) {
+  let cookieName = name + '=';
+  let cookies = document.cookie.split('; ');
+  for(let i = 0; i < cookies.length; i++){
+   let c = cookies[i].trim();
+   if(c.indexOf(cookieName) === 0){
+    return c.substring(cookieName.length, c.length)
+   }
+  }
+  return null
+ } 
+ async function loginVerification() {
+  let cookieVerification = await cookieVerify('cookieId')
+  if(!cookieVerification){
+   window.location.href = './userLogin.html'
+  }
+  else{
+   console.log(cookieVerification)
+   const loginv = await fetch(`${apiUrl}/setcookie/${cookieVerification}`)
+   let loginVerification = await loginv.json()
+   if(loginVerification.message == 'true'){
+    window.location.href = './index.html'
+   }
+   else{
+    console.log(loginVerification, 'login')
+    
+   }
+  }
+ }
+ loginVerification()
+
+ 
 
 document.addEventListener('click', function(event) {
  if(event.target.matches('button.btn-primary')){
@@ -13,7 +44,7 @@ document.addEventListener('click', function(event) {
   else{
   event.preventDefault()
  async function userAutentication(userName, userPassword){
-  const resp = await fetch(`https://blanzynetwork.org:8443/users?name=${userName}&userPassword=${userPassword}`)
+  const resp = await fetch(`${apiUrl}/users?name=${userName}&userPassword=${userPassword}`)
   const userJson = await resp.json();
  if(userJson.message === 'User do not exit, wrong user name or password'){
   console.log('si lo detecto')
@@ -24,27 +55,24 @@ document.addEventListener('click', function(event) {
   return
  }
   else{
-    const setCookie = async () => {
-      try {
-        const resp = await fetch('https://blanzynetwork.org:8443/setcookie', {
-          method: 'POST',
-          credentials: 'include',
-          headers: {'Content-Type': 'application/json'},
-          body: JSON.stringify({ userNameCookie: userName })
-        });
-        if (resp.ok) {
-          const show = await resp.json();
-          console.log(show[0])
-          //window.location.href = "./blangym.html"
-        } else {
-          console.error('Error en la solicitud:', resp.status, resp.statusText);
-        }
-      } catch (error) {
-        console.log('Error en el fetch:', error);
-      }
-    };
-    setCookie();
-    return
+    console.log(userJson[0].name)
+    const userNameCookie = { "userNameCookie": `${userJson[0].name}`}
+    const resp = await fetch(`${apiUrl}/setcookie`, {
+      method: 'post',
+      credentials: "include",
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify(userNameCookie)
+    })
+    const cookieId = await resp.json()
+    console.log(cookieId)
+    function createCookie(cookieId){
+      let date = new Date();
+      date.setTime(date.getTime() + (30 * 24 * 60 * 60 * 1000));
+      const expires = "expires" + date.toUTCString();
+      document.cookie = `cookieId= ${cookieId}; ${expires}; path=/`
+    }
+    createCookie(cookieId)
+    window.location.href = './blangym.html'
   }
  }
  userAutentication(userName, userPassword)
