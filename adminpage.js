@@ -22,17 +22,19 @@ async function cookieVerify(name) {
    let loginVerification = await loginv.json()
    if(loginVerification.message == 'false'){
     window.location.href = './userLogin.html'
+    let userName = null;
+    return userName
    }
    else{
-    console.log(loginVerification, 'login')
+    let userName = await loginVerification.userName;
+   return userName
     
    }
   }
  }
  loginVerification()
+const userNameLV = await loginVerification()
 
-const cookies = document.cookie;
-console.log(cookies)
 var idr = 0;
 fetch(`${apiUrl}/coments`)
 .then(res => res.json())

@@ -10,6 +10,7 @@ async function cookieVerify(name) {
   }
   return null
  } 
+
  async function loginVerification() {
   let cookieVerification = await cookieVerify('cookieId')
   if(!cookieVerification){
@@ -21,15 +22,13 @@ async function cookieVerify(name) {
    let loginVerification = await loginv.json()
    if(loginVerification.message == 'true'){
     window.location.href = './index.html'
-   }
-   else{
-    console.log(loginVerification, 'login')
-    
+    let userName = await loginVerification.userName;
+    return userName
    }
   }
  }
  loginVerification()
-
+const userNameLV = await loginVerification()
  
 
 document.addEventListener('click', function(event) {
