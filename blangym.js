@@ -18,8 +18,8 @@ async function loginVerification() {
  }
  else{
   console.log(cookieVerification)
-  const loginv = await fetch(`${apiUrl}/setcookie/${cookieVerification}`)
-  let loginVerification = await loginv.json()
+  const res = await fetch(`${apiUrl}/setcookie/${cookieVerification}`)
+  let loginVerification = await res.json()
 
   if(loginVerification.message == 'false'){
    window.location.href = './userLogin.html'
@@ -66,33 +66,39 @@ document.getElementById('exerciseForm').addEventListener('submit', function(e) {
         )
         const gymPostResponse = await resp.json()
         console.log(gymPostResponse)
+        if(gymPostResponse.message == "blanGym Post Success"){
+            window.location.reload(true)
+        }
+        else{
+            console.log(gymPostResponse)
+        }
         
     }
     addExercisesToDB()
-     //addExerciseToTable(dateG, muscleGroup, weight, reps, rest, notes);
-
-     //this.reset();
  }
 });
 /////////
-function addExerciseToTable(dateG, muscle, weight, reps, rest, notes) {
- const tbody = document.getElementById('exerciseTableBody');
- const row = document.createElement('tr');
- 
- row.innerHTML = `
-     <td>${formatDate(dateG)}</td>
-     <td>${muscle}</td>
-     <td>${weight}</td>
-     <td>${reps}</td>
-     <td>${rest}</td>
-     <td>${notes || '-'}</td>
+async function addExerciseToTable() {
+    const res = await fetch(`${apiUrl}/blangym?userName=${userNameLV}`)
+    const exercises = await res.json()
+    console.log(exercises)
+    const addExerciseTable = exercises.map(exercise => {
+        return `
+    <tr>
+     <td>${exercise.date}</td>
+     <td>${exercise.muscleGroup}</td>
+     <td>${exercise.weight}</td>
+     <td>${exercise.reps}</td>
+     <td>${exercise.rest}</td>
+     <td>${exercise.notes || '-'}</td>
      <td>
          <button class="btn btn-sm btn-danger" onclick="deleteExercise(this)">Delete</button>
      </td>
- `;
- 
- tbody.appendChild(row);
+    </tr>`
+    }).join('')
+    document.getElementById('exerciseTableBody').innerHTML = addExerciseTable
 }
+addExerciseToTable()
 
 function formatDate(dateString) {
  const date = new Date(dateString);
