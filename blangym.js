@@ -47,10 +47,11 @@ document.getElementById('exerciseForm').addEventListener('submit', function(e) {
  const notes = document.getElementById('notes').value;
 
  if(dateG && muscleGroup && weight && reps && rest) {
+    const date = formatDate(dateG);
     async function addExercisesToDB() {
         const reqBody = { 
         userName: `${userNameLV}`, 
-        date: `${dateG}`, 
+        date: `${date}`, 
         muscleGroup: `${muscleGroup}`, 
         weight: weight, 
         reps: reps,
@@ -92,13 +93,19 @@ async function addExerciseToTable() {
      <td>${exercise.rest}</td>
      <td>${exercise.notes || '-'}</td>
      <td>
-         <button class="btn btn-sm btn-danger" onclick="deleteExercise(this)">Delete</button>
+         <button id="${exercise['bin_to_uuid(exerciseId)']}" class="btn btn-sm btn-danger" onclick="deleteExercise(this)">Delete</button>
      </td>
     </tr>`
     }).join('')
     document.getElementById('exerciseTableBody').innerHTML = addExerciseTable
 }
 addExerciseToTable()
+
+
+async function  exerciseDelete(exerciseId) {
+    const res = await fetch(`${apiUrl}/blangym/${exerciseId}`)
+    
+}
 
 function formatDate(dateString) {
  const date = new Date(dateString);
@@ -109,3 +116,10 @@ function formatDate(dateString) {
  });
 }
 //////////
+
+
+
+
+
+
+
