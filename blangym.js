@@ -1,4 +1,5 @@
 import { apiUrl } from "./FETCHCONCTION.MJS";
+
 async function cookieVerify(name) {
  let cookieName = name + '=';
  let cookies = document.cookie.split('; ');
@@ -38,7 +39,6 @@ const userNameLV = await loginVerification()
 /////////////////
 document.getElementById('exerciseForm').addEventListener('submit', function(e) {
  e.preventDefault();
- 
  const dateG = document.getElementById('date').value;
  const muscleGroup = document.getElementById('muscleGroup').value;
  const weight = parseFloat(document.getElementById('weight').value);
@@ -72,17 +72,39 @@ document.getElementById('exerciseForm').addEventListener('submit', function(e) {
         }
         else{
             console.log(gymPostResponse)
-        }
-        
+        }   
     }
+
     addExercisesToDB()
  }
 });
 /////////
+document.addEventListener('click', function(event) {
+    if (event.target && event.target.matches('button.btn-danger')) {
+        const botonId = event.target.getAttribute('id');
+        const boton = document.getElementById(`${botonId}`);
+        console.log(botonId)
+        boton.disabled = true;
+        async function  exerciseDelete(exerciseId) {
+            const res = await fetch(`${apiUrl}/blangym/${exerciseId}`, {
+                method: 'DELETE'
+            })
+            const exerciseDeleted = await res.json();
+            if(exerciseDeleted.message !== "Exercise Has Been Deleted"){
+                console.log(exerciseDelete)
+            }
+            else{
+                //const confirmationDelete = document.querySelector(`#${botonId}`)
+                boton.classList.add('deleteGreenBoton')
+                
+            }
+        }
+        exerciseDelete(botonId)
+    }
+});
 async function addExerciseToTable() {
     const res = await fetch(`${apiUrl}/blangym?userName=${userNameLV}`)
-    const exercises = await res.json()
-    console.log(exercises)
+    const exercises = await res.json();
     const addExerciseTable = exercises.map(exercise => {
         return `
     <tr>
@@ -93,7 +115,7 @@ async function addExerciseToTable() {
      <td>${exercise.rest}</td>
      <td>${exercise.notes || '-'}</td>
      <td>
-         <button id="${exercise['bin_to_uuid(exerciseId)']}" class="btn btn-sm btn-danger" onclick="deleteExercise(this)">Delete</button>
+         <button id="${exercise['bin_to_uuid(exerciseId)']}" class="btn btn-sm btn-danger">Delete</button>
      </td>
     </tr>`
     }).join('')
@@ -101,16 +123,11 @@ async function addExerciseToTable() {
 }
 addExerciseToTable()
 
-
-async function  exerciseDelete(exerciseId) {
-    const res = await fetch(`${apiUrl}/blangym/${exerciseId}`)
-    
-}
-
 function formatDate(dateString) {
  const date = new Date(dateString);
  return date.toLocaleDateString('en-US', {
-     year: 'numeric',
+    weekday: 'short',
+    year: 'numeric',
      month: 'short',
      day: 'numeric'
  });
