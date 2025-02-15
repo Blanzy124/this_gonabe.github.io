@@ -5,6 +5,10 @@
 body {
  background-color: #f5f5f5;
 }
+#admin-botton{
+ font-size: 8px;
+
+}
 
 .container {
  max-width: 1200px;
@@ -41,11 +45,13 @@ body {
 }
 
 .signout-btn {
- position: absolute;
- top: 20px;
- right: 20px;
+ background-color: none !important;
+ border: none !important;
 }
-
+.signout-btn:hover{
+ background-color: black !important;
+ transition: 1s !important;
+}
 .table-hover tbody tr:hover {
  background-color: #f8f9fa;
 }

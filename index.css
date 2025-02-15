@@ -18,6 +18,9 @@
     font-size: 8px;
 
 }
+.gym-link{
+    border-right: solid #ffffff !important;
+}
 
 /*Image style starts*/
 .bg-image{
