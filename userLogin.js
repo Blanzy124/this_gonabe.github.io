@@ -1,15 +1,5 @@
 import { apiUrl } from "./FETCHCONCTION.MJS";
-async function cookieVerify(name) {
-  let cookieName = name + '=';
-  let cookies = document.cookie.split('; ');
-  for(let i = 0; i < cookies.length; i++){
-   let c = cookies[i].trim();
-   if(c.indexOf(cookieName) === 0){
-    return c.substring(cookieName.length, c.length)
-   }
-  }
-  return null
- } 
+import { cookieVerify } from "./reuse.js";
 
  async function loginVerification() {
   let cookieVerification = await cookieVerify('cookieId')
