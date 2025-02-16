@@ -1,6 +1,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Fira+Code:wght@300..700&family=Geist+Mono:wght@100..900&family=Lexend+Giga:wght@100..900&family=Orbitron&family=Roboto+Slab:wght@100..900&display=swap');
 
+#admin-botton{
+ font-size: 8px;
+
+}
+.signout-btn {
+ background-color: none !important;
+ border: none !important;
+}
+.signout-btn:hover{
+ background-color: black !important;
+ transition: 1s !important;
+}
 .coments-desing{
  background-color: wheat;
 }
@@ -33,6 +45,11 @@
  font-family: "Lexend Giga", serif;
  font-weight: 300;
  font-style: normal;
+}
+#send-botton-stile{
+ font-family: "Orbitron", serif;
+ font-weight: 300;
+ font-style: italic;
 }
 #green-button-deleted{
  background-color: green;

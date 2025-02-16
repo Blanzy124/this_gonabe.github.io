@@ -1,5 +1,5 @@
 import { apiUrl } from "./FETCHCONCTION.MJS";
-
+import { signOut } from "./reuse";
 async function cookieVerify(name) {
   let cookieName = name + '=';
   let cookies = document.cookie.split('; ');
@@ -93,11 +93,10 @@ if(event.target.matches('button.send-button')){
 
 document.addEventListener('click', function(event) {
  if (event.target && event.target.matches('button.btn-danger')) {
-   const botonId = event.target.getAttribute('data-id');
-   const boton = document.querySelector(`[data-id='${botonId}']`);
-   boton.disabled = true;
-
    const deleteComent = async (id) => {
+     const botonId = event.target.getAttribute('data-id');
+     const boton = document.querySelector(`[data-id='${botonId}']`);
+     boton.disabled = true;
     try{
      const resp = await fetch(`${apiUrl}/coments/${id}`, {
       method: 'DELETE',
@@ -131,7 +130,45 @@ document.addEventListener('click', function(event) {
    console.log(botonId)
    deleteComent(botonId).then(console.log(deleteComent()))
  }
+ 
+  if(event.target.matches('button.signout-btn')){
+      signOut()
+  }
+
 });
 
+const deleteComent = async (id) => {
+  const botonId = event.target.getAttribute('data-id');
+  const boton = document.querySelector(`[data-id='${botonId}']`);
+  boton.disabled = true;
+ try{
+  const resp = await fetch(`${apiUrl}/coments/${id}`, {
+   method: 'DELETE',
+   headers: {'Content-Type': 'application/json'},
+ }
 
+  )
+  if(resp.ok){
+   const coment = await resp.json()
+   const comentStatus = coment["message"];
+   if(comentStatus === `Coment has been deleted`){
+     //window.location.reload()
+   }
+   console.log(comentStatus)
+   return comentStatus
+  }
+  else {
+  const coment = await resp.json()
+   const comentStatus = coment["message"];
+   console.log(comentStatus)
+   return comentStatus
+  }
+
+ } catch (error){
+  if(error){
+   console.log("error en el catch", error)
+   return `"error en el catch", ${error}`
+  }
+ }
+}
 //window.location.reload()

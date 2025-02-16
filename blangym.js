@@ -1,5 +1,5 @@
 import { apiUrl } from "./FETCHCONCTION.MJS";
-
+import { signOut } from "./reuse";
 async function cookieVerify(name) {
  let cookieName = name + '=';
  let cookies = document.cookie.split('; ');
@@ -37,6 +37,10 @@ async function loginVerification() {
 loginVerification()
 const userNameLV = await loginVerification()
 /////////////////
+
+addExerciseToTable()
+
+/////////////////
 document.getElementById('exerciseForm').addEventListener('submit', function(e) {
  e.preventDefault();
  const dateG = document.getElementById('date').value;
@@ -58,7 +62,6 @@ document.getElementById('exerciseForm').addEventListener('submit', function(e) {
         rest: rest,
         notes: `${notes}`
         }
-
         const resp = await fetch(`${apiUrl}/blangym?userName=${userNameLV}`, {
             method: 'post',
             headers: {'Content-Type': 'application/json'},
@@ -81,27 +84,35 @@ document.getElementById('exerciseForm').addEventListener('submit', function(e) {
 /////////
 document.addEventListener('click', function(event) {
     if (event.target && event.target.matches('button.btn-danger')) {
-        const botonId = event.target.getAttribute('id');
-        const boton = document.getElementById(`${botonId}`);
-        console.log(botonId)
-        boton.disabled = true;
-        async function  exerciseDelete(exerciseId) {
-            const res = await fetch(`${apiUrl}/blangym/${exerciseId}`, {
-                method: 'DELETE'
-            })
-            const exerciseDeleted = await res.json();
-            if(exerciseDeleted.message !== "Exercise Has Been Deleted"){
-                console.log(exerciseDelete)
-            }
-            else{
-                //const confirmationDelete = document.querySelector(`#${botonId}`)
-                boton.classList.add('deleteGreenBoton')
-                
-            }
-        }
-        exerciseDelete(botonId)
+        exerciseDelete()
     }
+
+    if(event.target.matches('button.signout-btn')){
+        signOut()
+    }
+
 });
+///////////////////////
+async function  exerciseDelete() {
+    const botonId = event.target.getAttribute('id');
+    const boton = document.getElementById(`${botonId}`);
+    console.log(botonId)
+    boton.disabled = true;
+
+    const res = await fetch(`${apiUrl}/blangym/${botonId}`, {
+        method: 'DELETE'
+    })
+    const exerciseDeleted = await res.json();
+    if(exerciseDeleted.message !== "Exercise Has Been Deleted"){
+        console.log(exerciseDelete)
+    }
+    else{
+        //const confirmationDelete = document.querySelector(`#${botonId}`)
+        boton.classList.add('deleteGreenBoton')
+        
+    }
+}
+
 async function addExerciseToTable() {
     const res = await fetch(`${apiUrl}/blangym?userName=${userNameLV}`)
     const exercises = await res.json();
@@ -121,7 +132,6 @@ async function addExerciseToTable() {
     }).join('')
     document.getElementById('exerciseTableBody').innerHTML = addExerciseTable
 }
-addExerciseToTable()
 
 function formatDate(dateString) {
  const date = new Date(dateString + "T00:00:00");
@@ -132,7 +142,7 @@ function formatDate(dateString) {
      day: 'numeric'
  });
 }
-//////////
+//////////////////////////
 
 
 
