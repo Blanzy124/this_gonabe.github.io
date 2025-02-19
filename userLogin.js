@@ -1,4 +1,4 @@
-import { apiUrl } from "./FETCHCONCTION.MJS";
+import { apiUrl } from "./FETCHCONCTION.JS";
 import { cookieVerify } from "./reuse.js";
 
  async function loginVerification() {

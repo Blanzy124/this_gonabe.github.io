@@ -1,4 +1,4 @@
-import { apiUrl } from "./FETCHCONCTION.MJS";
+import { apiUrl } from "./FETCHCONCTION.JS";
 // Animation for the 3 boxes starts
 const cookies = document.cookie;
 console.log(cookies)

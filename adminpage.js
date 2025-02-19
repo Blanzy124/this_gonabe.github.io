@@ -1,4 +1,4 @@
-import { apiUrl } from "./FETCHCONCTION.MJS";
+import { apiUrl } from "./FETCHCONCTION.JS";
 import { signOut } from "./reuse.js";
 import { cookieVerify } from "./reuse.js";
 

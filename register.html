@@ -15,7 +15,7 @@
             <h2 class="card-title text-center mb-4">Sign Up</h2>
             <form id="registerForm">
                 <div class="mb-3">
-                    <label for="username" class="form-label">Username</label>
+                    <label for="username" class="form-label">Username</label><span class="showError" id="showErrorName"></span>
                     <input type="text" class="form-control custom-input" id="username" placeholder="Enter your name" required>
                 </div>
                 <div class="mb-3">
@@ -23,7 +23,7 @@
                     <input type="password" class="form-control custom-input" id="password" placeholder="Enter password" required>
                 </div>
                 <div class="mb-3">
-                    <label for="confirmPassword" class="form-label">Confirm Password</label><label class="showError" id="showError" for="showError"></label>
+                    <label for="confirmPassword" class="form-label">Confirm Password</label><span class="showError" id="showError"></span>
                     <input type="password" class="form-control custom-input" id="confirmPassword" placeholder="Confirm password" required>
                 </div>
                 <button type="submit" class="register-btn btn btn-primary w-100 mb-3 custom-btn">Register</button>
@@ -31,6 +31,6 @@
             <button class="btn btn-outline-secondary w-100 custom-btn" onclick="window.location.href='login.html'">Back to Login</button>
         </div>
     </div>
-    <script src="./register.js"></script>
+    <script type="module" src="./register.js"></script>
 </body>
 </html>

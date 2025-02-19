@@ -1,4 +1,4 @@
-import { apiUrl } from "./FETCHCONCTION.MJS";
+import { apiUrl } from "./FETCHCONCTION.JS";
 
 export async function cookieVerify(name) {
     let cookieName = name + '=';
