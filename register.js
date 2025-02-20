@@ -30,7 +30,6 @@ document.getElementById('registerForm').addEventListener('submit', function(even
  if(userName && password && confirmPassword){
   async function  createUser() {
    console.log('hola')
-  
    if(password !== confirmPassword){
     showErrorPlace('Password Do Not match!', 'showError')
     return
@@ -39,12 +38,24 @@ document.getElementById('registerForm').addEventListener('submit', function(even
    if(userName && password && confirmPassword && password === confirmPassword){
     if(userName.length > 1 && userName.length <= 20){
      if(specialChatactersSerch(userName) == true){
-      showErrorPlace('No Spesial Characters', "showErrorName")
+      showErrorPlace('No Special Characters.', "showErrorName")
+      return
      }
+     if(specialChatactersSerch(password) == true){
+      showErrorPlace('No Special Characters.', "showError")
+      return
+     }
+     if(password.length >= 21){
+      showErrorPlace('Max Characters 20.', 'showError')
+      return
+    } 
+    else
+
+
      return
     }
     if(userName.length >= 21){
-     showErrorPlace('Max Characters 20', 'showErrorName')
+     showErrorPlace('Max Characters 20.', 'showErrorName')
     } 
 
 
