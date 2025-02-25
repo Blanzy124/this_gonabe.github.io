@@ -29,7 +29,6 @@ document.getElementById('registerForm').addEventListener('submit', function(even
  const confirmPassword = document.getElementById('confirmPassword').value;
  if(userName && password && confirmPassword){
   async function  createUser() {
-   console.log('hola')
    if(password !== confirmPassword){
     showErrorPlace('Password Do Not match!', 'showError')
     return
@@ -37,6 +36,10 @@ document.getElementById('registerForm').addEventListener('submit', function(even
   
    if(userName && password && confirmPassword && password === confirmPassword){
     if(userName.length > 1 && userName.length <= 20){
+     if(password.length >= 21){
+       showErrorPlace('Max Characters 20.', 'showError')
+       return
+     } 
      if(specialChatactersSerch(userName) == true){
       showErrorPlace('No Special Characters.', "showErrorName")
       return
@@ -45,31 +48,31 @@ document.getElementById('registerForm').addEventListener('submit', function(even
       showErrorPlace('No Special Characters.', "showError")
       return
      }
-     if(password.length >= 21){
-      showErrorPlace('Max Characters 20.', 'showError')
-      return
-    } 
-    else
-
-
-     return
+    else{
+      const reqBody = { name: `${userName}`, userPassword: `${password}`}
+      console.log(JSON.stringify(reqBody))
+      const res = await fetch(`${apiUrl}/users`, {
+        method: 'post',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(reqBody)
+      })
+      const newUserCreataion = await res.json();
+      if(newUserCreataion.ok !== "true" ){
+        showErrorPlace(`${newUserCreataion.message}`, "showError")
+        return 
+      }
+      else{
+        window.location.href = './userLogin.html';
+        return
+      }
     }
+    }
+
     if(userName.length >= 21){
      showErrorPlace('Max Characters 20.', 'showErrorName')
+     return
     } 
-
-
-
-
-
-
-
-
-    console.log('probando')
-    return
    }
-
-
 
    else{
     showErrorPlace('Must fill everythin!', 'showError')

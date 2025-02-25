@@ -40,7 +40,7 @@ document.addEventListener('click', function(event) {
   return
  }
  if(resp.ok === false){
-  console.log('Bad request ',resp.ok)
+  console.log('Bad request ', resp.ok)
   return
  }
   else{
