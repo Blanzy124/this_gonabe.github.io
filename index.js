@@ -139,7 +139,7 @@ document.getElementById('miFormulario').addEventListener('submit', function(even
 
   const postComent = async () => {
     try {
-      const resp = await fetch('${apiUrl}/coments', {
+      const resp = await fetch(`${apiUrl}/coments`, {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify(newComent)

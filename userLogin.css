@@ -1,16 +1,30 @@
 /* Fuente personalizada */
 body {
  font-family: 'Poppins', sans-serif;
- background-color: #f8f9fa;
+ background-color: #0C1B33;
+}
+input{
+ background-color: #060d1a !important;
+ color: white !important;
+}
+input::placeholder{
+ color: white !important;
+ font-family: "Orbitron", serif;;
+}
+.container-style{
+ background-color: #0C1B33 !important;
 }
 
+.text-color{
+ color: white;
+}
 /* Estilo de la tarjeta */
 .custom-card {
  border: none;
  border-radius: 12px;
  background-color: #ffffff;
  transition: transform 0.3s ease, box-shadow 0.3s ease;
-
+ background-color: #0a1524 !important;
 }
 
 .custom-card:hover {
@@ -38,6 +52,7 @@ body {
  padding: 10px;
  font-weight: 500;
  transition: background-color 0.3s ease, transform 0.3s ease;
+ background-color: #102442 !important;
 }
 
 .custom-btn:hover {
