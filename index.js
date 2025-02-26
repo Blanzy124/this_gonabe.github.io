@@ -114,9 +114,9 @@ fetch(`${apiUrl}/coments`)
      return `
             <div class="container-fluid mt-3">
                 <div class="row ">
-                    <h5 class="coment-name align-items-center d-flex justify-content-start col-4 col-sm-4 col-xl-2">${coment.name}</h5>
-                    <h6 class="coment-age align-items-center d-flex justify-content-start col-8 col-sm-8 col-xl-10">${coment.age}</h6>
-                    <p class="coment-text align-items-center d-flex justify-content-start col-12">${coment.coment}</p>
+                    <h5 class="coment-name text-color align-items-center d-flex justify-content-start col-4 col-sm-4 col-xl-2">${coment.name}</h5>
+                    <h6 class="coment-age text-color align-items-center d-flex justify-content-start col-8 col-sm-8 col-xl-10">${coment.age}</h6>
+                    <p class="coment-text text-color align-items-center d-flex justify-content-start col-12">${coment.coment}</p>
                 </div>    
             </div>
             <hr class="coment-hr">

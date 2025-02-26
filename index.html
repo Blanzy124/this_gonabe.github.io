@@ -18,7 +18,7 @@
             @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Castoro+Titling&family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&family=Protest+Guerrilla&display=swap');
          </style>
     </head>
-    <body>
+    <body class="body">
 </html>
 <header>
     <nav class="navbar bg-body-tertiary bg-primary-subtle" data-bs-theme="dark"">
@@ -93,9 +93,10 @@
 </div> 
 </div> 
 
-<!--CALCULATOR STARTS--><!---->
+<!--CALCULATOR STARTS-->
+<!--
 <div class="container mt-5">
-<div class="row"> <!--Principal Ror Container 1-->
+<div class="row"> 
 
     <div class="rounded-3 text-center cal-desing col-12 col-sm-12 col-md-6 col-lg-4 ">
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calculator-fill" viewBox="0 0 16 16">
@@ -121,7 +122,7 @@
     </div>
      <div class="row ">
       <div class="col-4 mt-2 resultado-desing">
-        <button class="btn btn-dark " onclick="calcular()">Resultado</button> <!--on click shows a function-->
+        <button class="btn btn-dark " onclick="calcular()">Resultado</button> 
       </div>
 
       <div class="result-desing text-center rounded-1 mt-2 mb-2 col-4">
@@ -131,11 +132,11 @@
     </div>
     </div>
 
-<!--Calculator Ends-->
 
-<!--History of calculator Starts-->
+
+
 <div class=" history-desing rounded-3 col-12 col-sm-12 col-md-6 col-lg-8">
-    <!--Top History desing Starts-->
+
     <div class="top-history rounded-1 align-items-center row">
             <span class="hc-desing col-2"> 
                 History
@@ -146,8 +147,8 @@
                 </a>
             </div>
     </div>
-    <!--Top History desing Ends-->
-    <!--Body Coments Stards-->
+
+
     <div class="body-history">
             <div class="result-operation " id="result-operation">   
             </div>
@@ -156,10 +157,11 @@
 </div>
 </div>
 
-<!--History of calculator Ends-->
+
 </div> 
 </div>
-<!--Calculator Ends-->
+
+
 <!--////////////////////////////////////////////////////////////////-->
 
 <!--Coments Sections starts-->
@@ -168,12 +170,12 @@
         <div class="coments-desing rounded-3 col-12">
             <form id="miFormulario" class="container">
                 <div class="row">
-                    <label for="nombre" class="header-coment-section mt-3">Coments:</label>
+                    <label for="nombre" class="header-coment-section text-color mt-3">Coments:</label>
                     <div class="form-group col-7">
-                        <input type="text" class="form-control placeHolder-stile " id="nombre" placeholder="Name">
+                        <input type="text" class="form-control background-textarea-input  placeHolder-stile " id="nombre" placeholder="Name">
                     </div>
                     <div class="form-group col-3 ">
-                        <input type="number" class="form-control placeHolder-stile" id="edad" placeholder="Age">
+                        <input type="number" class="form-control background-textarea-input placeHolder-stile" id="edad" placeholder="Age">
                     </div>
                     <div class="p-0 col-2">
                         <button type="submit" id="send-botton-stile"  class=" btn btn-primary col-12">Send</button>
@@ -181,7 +183,7 @@
                     </div>
                 <div class="row">
                     <div class="form-group col-12">
-                        <textarea class="form-control mt-3  placeHolder-stile" id="comentario" rows="2" placeholder="Coment"></textarea>
+                        <textarea class="form-control background-textarea-input mt-3  placeHolder-stile" id="comentario" rows="2" placeholder="Coment"></textarea>
                     </div>
                 </div>
             </form>

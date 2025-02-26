@@ -8,10 +8,31 @@
     margin: 0;
 }
 
-
-.back-color{
-    background-color: rgb(205, 205, 205);
+.body{
+    background-color: #0C1B33;
 }
+
+.text-color{
+    color: white;
+}
+
+input{
+    background-color: #060d1a !important;
+    color: white !important;
+}
+input::placeholder{
+    color: white !important;
+    font-family: "Orbitron", serif;;
+}
+textarea{
+    background-color: #060d1a !important;
+    color: white !important;
+}
+textarea::placeholder{
+    color: white !important;
+    font-family: "Orbitron", serif;;
+}
+
 
 /*header stile*/
 #admin-botton{
@@ -246,11 +267,11 @@
 }
 /*History of calculator ends*/
 
-
 /*Coments Start*/ 
+/*
 .coments-desing{
-    background-color: wheat;
-}
+    background-color: #5D737E
+}*/
 /*Coment post start*/
 .header-coment-section{
     font-size: 20px;
@@ -267,10 +288,10 @@
 /*Coment post end*/
 
 .coment-name{
-    font-family: "Play", serif;
+    font-family: "Orbitron", serif;
     font-weight: 900;
     font-style: normal;
-    font-size: 17px;
+    font-size: 13px;
     font-weight:bolder;
     border-left: solid 2px;
     
@@ -285,11 +306,13 @@
 }
 .coment-text{
     font-size: 15px;
-    font-family: "Lexend Giga", serif;
+    font-family: "Orbitron", serif;
     font-weight: 300;
     font-style: normal;
 }
 #send-botton-stile{
+    background-color: #0C1B33;
+    color: white;
     font-family: "Orbitron", serif;
     font-weight: 300;
     font-style: italic;
