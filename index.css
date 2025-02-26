@@ -74,6 +74,14 @@ textarea::placeholder{
 
 
 /*Show History starts*/
+.little-resume{
+    font-size: 20px;
+    font-family: "Orbitron", serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+
 .bg-my-h2-top-color{
     background-color: #2d3e6d;
     box-shadow: 4px 7px 10px 0.9px;
@@ -146,41 +154,6 @@ textarea::placeholder{
 }
 
 @media(max-width: 767px){
-
-    .back-color-container{
-        background-color: #d2f0ed;
-    }
-    [data-animation="work"] { /*from botton to top*/
-        opacity: 0;
-        transform: translateY(100%);
-        transition: .6s ease-in .3s;
-    
-        --opacity: 1 ;
-        --transform: translateY(0);
-    
-    }
-    [data-animation="history"] { /*from top to botton*/
-        opacity: 0;
-        transform: translateY(-100%);
-        transition: .6s ease-in .3s;
-    
-        --opacity: 1 ;
-        --transform: translate(0);
-    
-    }
-    [data-animation="studies"] { /*popup*/
-        opacity: 0;
-        transform: scale(0);
-        transition: .6s ease-in .3s;
-    
-        --opacity: 1 ;
-        --transform: scale(1);
-    
-    }
-    .unset {
-        opacity: var(--opacity);
-        transform: var(--transform);
-    }
 }
 
 /*Animation history starts*/
