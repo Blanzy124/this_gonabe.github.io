@@ -109,14 +109,14 @@ async function addExerciseToTable() {
     const exercises = await res.json();
     const addExerciseTable = exercises.map(exercise => {
         return `
-    <tr>
-     <td>${exercise.date}</td>
-     <td>${exercise.muscleGroup}</td>
-     <td>${exercise.weight}</td>
-     <td>${exercise.reps}</td>
-     <td>${exercise.rest}</td>
-     <td>${exercise.notes || '-'}</td>
-     <td>
+    <tr >
+     <td class="tr text-color">${exercise.date}</td>
+     <td class="tr text-color">${exercise.muscleGroup}</td>
+     <td class="tr text-color">${exercise.weight}</td>
+     <td class="tr text-color">${exercise.reps}</td>
+     <td class="tr text-color">${exercise.rest}</td>
+     <td class="tr text-color">${exercise.notes || '-'}</td>
+     <td class="tr text-color">
          <button id="${exercise['bin_to_uuid(exerciseId)']}" class="btn btn-sm btn-danger">Delete</button>
      </td>
     </tr>`
