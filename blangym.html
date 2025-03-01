@@ -73,29 +73,13 @@
             <div id="container formfilter ">
                 <div class="row d-flex justify-content-center align-items-center">
                     <div class="col-12 col-md-2">
-                        <select class="form-select mt-3" id="filterBy">
+                        <select type="submit" class="form-select mt-3" id="filterBy">
                             <option value="">Filter by</option>
-                            <option>Date</option>
-                            <option>muscleGroup</option>
-                            <option>Else</option>
+                            <option value="date">Date</option>
+                            <option value="muscleGroup">Muscle Group</option>
                         </select>
                     </div>
-                    <form class="col-12 col-md-10 ms-2 row " id="showFilterOptions">
-                        <div class="col-1 mt-3 d-flex justify-content-center align-items-center" id="">
-                            <label for="filterLabel" class="text-color ">From:</label>
-                        </div>
-                        <div class="col-5 col-md-3 mt-3" id="filters">
-                            <input type="date" class="form-control" id="filterDateFrom" required>
-                        </div>
-                        <div class="col-1 mt-3 d-flex justify-content-center align-items-center" id="">
-                            <label for="filterLabel" class="text-color ">To:</label>
-                        </div>
-                        <div class="col-5 col-md-3 mt-3" id="">
-                            <input type="date" class="form-control" id="filterDateTo" required>
-                        </div>
-                        <div class="col-12 col-md-3 mt-3 d-flex justify-content-center align-items-center" id="filters">
-                            <button type="submit" class="btn btn-custom col-12 ps-0 pe-0 " id="filterButton">Filter</button>
-                        </div>
+                    <form class="col-12 col-md-10 ms-2 row d-flex  align-items-center" id="showFilterOptions">
                     </form>
                 </div>
 
