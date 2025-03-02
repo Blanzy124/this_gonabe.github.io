@@ -140,7 +140,7 @@ function formatDate(dateString) {
 //Filter
 
 
-document.getElementById("filterBy").addEventListener("change", function(e) {
+document.getElementById("filterBy").addEventListener("change", async function(e) {
     e.preventDefault();
     const filterOption = document.getElementById("filterBy").value;
     if(filterOption == "date"){
@@ -153,8 +153,16 @@ document.getElementById("filterBy").addEventListener("change", function(e) {
         filter('muscleGroup')
         return
     }
+    if(filterOption == "note"){
+        document.getElementById("showFilterOptions").innerHTML = noteFilter();
+        filter('note')
+        return
+    }
     else{
         document.getElementById('showFilterOptions').innerHTML = "";
+        const exercises = await addExerciseToTable();
+        const allExercises = exercises.map(exercise => exerciseShowEstructure(exercise)).join("");
+        document.getElementById('exerciseTableBody').innerHTML = allExercises;
     }
 
 });
@@ -163,92 +171,72 @@ async function filter(filterChoosed){
     document.getElementById("filterButton").addEventListener("click", async function(e){
         e.preventDefault();
 
-        if(filterChoosed == 'date'){
-            const filterDateFrom = formatDate(document.getElementById('filterDateFrom').value);
-            const filterDateTo = formatDate(document.getElementById('filterDateTo').value);
+        if (filterChoosed == 'date') {
+            const filterDateFrom = document.getElementById('filterDateFrom').value;
+            const filterDateTo = document.getElementById('filterDateTo').value;
             const exercises = await addExerciseToTable();
-            if(filterDateFrom && filterDateTo){
-                const FDFs = filterDateFrom.split(" ");
-                const FDFd = parseInt(FDFs[2]);
-                const FDFy = parseInt(FDFs[3]);
-
-                const FDTs = filterDateTo.split(" ");
-                const FDTd = parseInt(FDTs[2]);
-                const FDTy = parseInt(FDTs[3]);
-
-                const aplyingFilter = exercises.map(exercise => {
-                    const exerDate = exercise.date.split(" ");
-                    const EXDd = parseInt(exerDate[2]);
-                    const EXDy = parseInt(exerDate[3]);
-                    //console.log(EXDy, FDFy, FDTy)
-                    const FDFm = formatDateExplicit.months.indexOf(FDFs[1])
-                    const FDTm = formatDateExplicit.months.indexOf(FDTs[1])
-                    const EXDm = formatDateExplicit.months.indexOf(exerDate[1])
-
-                    if(FSFd > FDTd){
-                        if(EXDd >= FDFd && EXDd <= FDTd){
-                            
-                            if(EXDm >= FDFm && EXDm <= FDTm || EXDm >= FDFm && EXDm >= FDTm){
-                            }
-
-                            if(EXDy >= FDFy && EXDy <= FDTy ){
-
-                                
-                                console.log("filtro dia", exercise)
         
+            if (filterDateFrom && filterDateTo) {
+                // Convertir las fechas a objetos Date
+                const fromDate = new Date(filterDateFrom);
+                const toDate = new Date(filterDateTo);
         
-                                //console.log("filtro ano")
-                            }
-                            //console.log("filtro mes", formatDateExplicit.months.indexOf(FDFs[1]), formatDateExplicit.months.indexOf(FDTs[1]), formatDateExplicit.months[1])
-                        }
-                    }
-
-                    if(EXDd >= FDFd && EXDd <= FDTd){
-
-                        if(EXDm >= FDFm && EXDm <= FDTm || EXDm >= FDFm && EXDm >= FDTm){
-                            if(EXDy >= FDFy && EXDy <= FDTy ){
-
-                                
-                                console.log("filtro dia", exercise)
-        
-        
-                                //console.log("filtro ano")
-                            }
-                            //console.log("filtro mes", formatDateExplicit.months.indexOf(FDFs[1]), formatDateExplicit.months.indexOf(FDTs[1]), formatDateExplicit.months[1])
-                        }
-                    }
-
-                })
+                const filteredExercises = exercises.filter(exercise => {
+                    const exerciseDate = new Date(exercise.date);
+                    return exerciseDate >= fromDate && exerciseDate <= toDate;
+                }).map(exercise => `
+                    <tr>
+                     <td class="tr text-color">${exercise.date}</td>
+                     <td class="tr text-color">${exercise.muscleGroup}</td>
+                     <td class="tr text-color">${exercise.weight}</td>
+                     <td class="tr text-color">${exercise.reps}</td>
+                     <td class="tr text-color">${exercise.rest}</td>
+                     <td class="tr text-color">${exercise.notes || '-'}</td>
+                     <td class="tr text-color">
+                         <button id="${exercise['bin_to_uuid(exerciseId)']}" class="btn btn-sm btn-danger">Delete</button>
+                     </td>
+                    </tr>`).join("");
+                document.getElementById("exerciseTableBody").innerHTML = filteredExercises;
             }
-
-            return
+        
+            return;
         }
         if(filterChoosed == 'muscleGroup'){
             const muscleGroupFilter = document.getElementById('muscleGroupFilter').value;
             const exercises = await addExerciseToTable();
             const aplyingFilter = exercises.map(exercise => {
                 if(muscleGroupFilter == exercise.muscleGroup){
-                        return `
-                        <tr >
-                         <td class="tr text-color">${exercise.date}</td>
-                         <td class="tr text-color">${exercise.muscleGroup}</td>
-                         <td class="tr text-color">${exercise.weight}</td>
-                         <td class="tr text-color">${exercise.reps}</td>
-                         <td class="tr text-color">${exercise.rest}</td>
-                         <td class="tr text-color">${exercise.notes || '-'}</td>
-                         <td class="tr text-color">
-                             <button id="${exercise['bin_to_uuid(exerciseId)']}" class="btn btn-sm btn-danger">Delete</button>
-                         </td>
-                        </tr>`  
+                        return exerciseShowEstructure(exercise)
                 }
             }).join('');
             document.getElementById("exerciseTableBody").innerHTML = aplyingFilter;
             return
         }
+        if(filterChoosed == 'note'){
+            const exercises = await addExerciseToTable();
+            const userFilterInput = document.getElementById("notesFilter").value;         
+            const notesFilter = exercises.filter(exercise => exercise.notes.toLowerCase().includes(`${userFilterInput.toLowerCase()}`))
+            .map(exercise => exerciseShowEstructure(exercise)).join("")
+            document.getElementById("exerciseTableBody").innerHTML = notesFilter;
+        }
     })
 }
 
 
+function exerciseShowEstructure(exercise){
+    return `
+    <tr >
+     <td class="tr text-color">${exercise.date}</td>
+     <td class="tr text-color">${exercise.muscleGroup}</td>
+     <td class="tr text-color">${exercise.weight}</td>
+     <td class="tr text-color">${exercise.reps}</td>
+     <td class="tr text-color">${exercise.rest}</td>
+     <td class="tr text-color">${exercise.notes || '-'}</td>
+     <td class="tr text-color">
+         <button id="${exercise['bin_to_uuid(exerciseId)']}" class="btn btn-sm btn-danger">Delete</button>
+     </td>
+    </tr>`
+}
 
 function filterDate(){
     return`
@@ -285,17 +273,18 @@ function filterMuscleGroup(){
                             <button type="button" class="btn btn-custom col-12 ps-0 pe-0 " id="filterButton">Filter</button>
                         </div>`
 }
+function noteFilter(){
+    return`
+                        <div class="col-11 col-md-3 mt-3" id="filters">
+                            <input type="text" class="form-control " id="notesFilter" placeholder="Filter by notes">
+                            </select>
+                        </div>
+
+                        <div class="col-12 col-md-3 ps-0 mt-3 d-flex justify-content-center align-items-center" id="filters">
+                            <button type="button" class="btn btn-custom col-12 ps-0 pe-0 " id="filterButton">Filter</button>
+                        </div>`
+}
+//const palabras = ["gato", "perro", "elefante", "águila", "ratón"];
+//const conLetraE = palabras.filter(palabra => palabra.includes(""));
 
 
-const formatDateExplicit = {
-   // years: [2024, 2025, 2026, 2027, 2028, 2029, 2030, 2031, 2032, 2033, 2034, 2035, 2036, 2037, 2038, 2039, 2040],
-    months: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
-        //days: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31]
-    };
-    
-    const cualquier = "Jan";
-    const cualquier2= "Aug";
-
-console.log()
-
-console.log(formatDateExplicit.months[4])
