@@ -36,7 +36,7 @@ document.addEventListener('click', function(event) {
   const resp = await fetch(`${apiUrl}/users?name=${userName}&userPassword=${userPassword}`)
   const userJson = await resp.json();
  if(userJson.message === 'User do not exit, wrong user name or password'){
-  console.log('si lo detecto')
+  //console.log('si lo detecto')
   return
  }
  if(resp.ok === false){
