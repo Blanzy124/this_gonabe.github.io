@@ -44,7 +44,7 @@ document.addEventListener('click', function(event) {
   return
  }
   else{
-    console.log(userJson[0].name)
+    //console.log(userJson[0].name)
     const userNameCookie = { "userNameCookie": `${userJson[0].name}`}
     const resp = await fetch(`${apiUrl}/setcookie`, {
       method: 'post',
