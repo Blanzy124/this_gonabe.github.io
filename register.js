@@ -21,20 +21,22 @@ async function loginVerification() {
 loginVerification()
 const userNameLV = await loginVerification()
 
-
 document.getElementById('registerForm').addEventListener('submit', function(event) {
  event.preventDefault();
+ document.getElementById('registerForm').style.display = "none";
+ 
  const userName = document.getElementById('username').value;
  const password = document.getElementById('password').value;
  const confirmPassword = document.getElementById('confirmPassword').value;
- if(userName && password && confirmPassword){
+ const userEmail = document.getElementById('useremail').value;
+ if(userName && password && confirmPassword && userEmail){
   async function  createUser() {
    if(password !== confirmPassword){
     showErrorPlace('Password Do Not match!', 'showError')
     return
    }
   
-   if(userName && password && confirmPassword && password === confirmPassword){
+   if(userName && password && confirmPassword && userEmail && password === confirmPassword){
     if(userName.length > 1 && userName.length <= 20){
      if(password.length >= 21){
        showErrorPlace('Max Characters 20.', 'showError')
@@ -44,13 +46,13 @@ document.getElementById('registerForm').addEventListener('submit', function(even
       showErrorPlace('No Special Characters.', "showErrorName")
       return
      }
-     if(specialChatactersSerch(password) == true){
-      showErrorPlace('No Special Characters.', "showError")
-      return
-     }
+//     if(specialChatactersSerch(password) == true){ 
+//      showErrorPlace('No Special Characters.', "showError")
+//      return
+//     }
     else{
-      const reqBody = { name: `${userName}`, userPassword: `${password}`}
-      console.log(JSON.stringify(reqBody))
+      const reqBody = { name: `${userName}`, userPassword: `${password}`, userEmail: `${userEmail}`}
+      //console.log(JSON.stringify(reqBody))
       const res = await fetch(`${apiUrl}/users`, {
         method: 'post',
         headers: {'Content-Type': 'application/json'},
@@ -62,7 +64,8 @@ document.getElementById('registerForm').addEventListener('submit', function(even
         return 
       }
       else{
-        window.location.href = './userLogin.html';
+        document.getElementById('h2-card-title', 'registerForm').style.display = "none";
+        //window.location.href = './userLogin.html';
         return
       }
     }

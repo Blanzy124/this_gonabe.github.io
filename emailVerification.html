@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>emailVerification</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./emailVerification.css">
+</head>
+<body>
+ <div class="container d-flex justify-content-center align-items-center vh-100" >
+  <div class="card  shadow-lg p-4 col-8 col-md-6 col-lg-4 custom-card" id="pricipalContainer">
+      <h2 class="text-color card-title font-size-1 text-center mb-4">Verify your email.</h2>
+      <form id="registerForm">
+          <div class="mb-3">
+              <label for="message" class="text-color font-size-2 form-label">We have sent a confirmation code to your email address, take a look and type it in.</label><span class="showError" id="showErrorCode"></span>
+              <input type="text" class="form-control custom-input mt-3" id="confirmationcode" placeholder="Enter your confirmation code." required>
+          </div>       
+          <button type="submit" class="register-btn btn btn-primary w-100 mb-3 custom-btn">Send</button>
+      </form>
+      <button class="btn btn-outline-secondary w-100 custom-btn" onclick="window.location.href='./userLogin.html'">Back to Login</button>
+  </div>
+</div>
+
+ <script type="module" src="./emailVerification.js"></script>
+</body>
