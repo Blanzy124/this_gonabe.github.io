@@ -21,33 +21,106 @@ async function loginVerification() {
 loginVerification()
 const userNameLV = await loginVerification()
 
-document.getElementById('registerForm').addEventListener('submit', function(event) {
- event.preventDefault();
- document.getElementById('pricipalContainer').style.display = "none";
- const confirmationCode = document.getElementById('confirmationcode').value;
 
-// if(confirmationCode){
-//  const reqBody = { userEmail: }
-//  const res = await fetch()
-// }
-
-});
-//////////////
-
-function showErrorPlace(message, elementId){
- document.getElementById(elementId).innerHTML = showErrorIn(message)
-
- function showErrorIn(message){
-  return `<small class="red-alert ms-1">${message}</small>`
+document.getElementById('emailVForm').addEventListener('submit', function(event) {
+  event.preventDefault();
+  const userName = document.getElementById('username').value;
+  const password = document.getElementById('password').value;
+  const userEmail = document.getElementById('useremail').value;
+  if(userName && password && confirmPassword && userEmail){
+    async function  createUser() {
+       
+       if(userName && password  && userEmail){
+               const reqBody = { name: `${userName}`, userPassword: `${password}`, userEmail: `${userEmail}`}
+               //console.log(JSON.stringify(reqBody))
+               const res = await fetch(`${apiUrl}/users`, {
+                 method: 'post',
+                 headers: {'Content-Type': 'application/json'},
+                 body: JSON.stringify(reqBody)
+               })
+               const newUserCreataion = await res.json();
+               if(newUserCreataion.ok !== "true" ){
+                 showErrorPlace(`${newUserCreataion.message}`, "showError")
+                 return 
+               }
+               else{
+                 document.getElementById('registerForm').style.display = "none";
+                 document.getElementById('h2-card-title').style.display = "none";
+                 document.getElementById('back-to-login-button').style.display = "none";
+                 document.getElementById('innerHTML').innerHTML = confirmationHTML();
+ 
+                 setTimeout(() => {
+                   document.getElementById('verifyForm').addEventListener('submit', async function(event1){
+                     event1.preventDefault();
+                       const userVerifyCode = document.getElementById('usercode').value;
+                       const reqBody = { userEmail: `${userEmail}`, emailStatus: '1', userVerifyCode: `${userVerifyCode}` }
+                       console.log(reqBody)
+                       const res = await fetch(`${apiUrl}/email/setemailverification`, {
+                         method: 'post',
+                         headers: {'Content-Type': 'application/json'},
+                         body: JSON.stringify(reqBody)
+                       })
+                       const verifyUser = await res.json();
+                       if(verifyUser.ok !== 'true')
+                         showErrorPlace(`${verifyUser.message}`, 'showErrorCode');
+                       else{
+                         window.location.href = './userLogin.html';
+                       
+                       }
+                       return
+                       
+                   })
+ 
+ 
+                 }, 1000)
+       }
+     
+     
+ 
+     if(userName.length >= 21){
+      showErrorPlace('Max Characters 20.', 'showErrorName')
+      return
+     } 
+    }
+ 
+    else{
+     showErrorPlace('Must fill everythin!', 'showError')
+     return
+    }
+   
+   }
+   createUser()
+  }
+ });
+ //////////////
+ 
+ function showErrorPlace(message, elementId){
+  document.getElementById(elementId).innerHTML = showErrorIn(message)
+ 
+  function showErrorIn(message){
+   return `<small class="red-alert ms-1">${message}</small>`
+  }
  }
-}
-
-
-function specialChatactersSerch(string){
- const specialChatacters = ["!", '"', "#", "$", "%", "&", "'", "(", ")", "*", 
-  "+", ",", ".", "/", ":", ";", "<", "=", ">", "?", "@", "[", "\\", "]", "^", 
-  "`", "{", "|", "}", "~"];
- const resu = specialChatacters.some(char => string.includes(char))
- console.log(resu)
- return resu
-}
+ 
+ 
+ function specialChatactersSerch(string){
+  const specialChatacters = ["!", '"', "#", "$", "%", "&", "'", "(", ")", "*", 
+   "+", ",", ".", "/", ":", ";", "<", "=", ">", "?", "@", "[", "\\", "]", "^", 
+   "`", "{", "|", "}", "~"];
+  const resu = specialChatacters.some(char => string.includes(char))
+  console.log(resu)
+  return resu
+ }
+ 
+ function confirmationHTML(){
+   return`  <h2 class="text-color card-title text-center mb-4" id="h2-card-title">Verify your email.</h2>
+             <form id="verifyForm">
+                 <div class="mb-3">
+                     <label for="verificationcode" class="text-color form-label">We have sent a confirmation code to your email address, 
+                         take a look and type it in.</label><span class="showError" id="showErrorCode"></span>
+                     <input type="text" class="form-control custom-input" id="usercode" placeholder="Enter your code" required>
+                 </div>   
+                 <button type="submit" class="register-btn btn btn-primary w-100 mb-3 custom-btn">Verify</button>
+             </form>
+                         <button class="btn btn-outline-secondary w-100 custom-btn" onclick="window.location.href='./userLogin.html'">Back to Login</button>`
+ }

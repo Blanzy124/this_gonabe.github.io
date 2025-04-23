@@ -10,18 +10,28 @@
 </head>
 <body>
  <div class="container d-flex justify-content-center align-items-center vh-100" >
-  <div class="card  shadow-lg p-4 col-8 col-md-6 col-lg-4 custom-card" id="pricipalContainer">
-      <h2 class="text-color card-title font-size-1 text-center mb-4">Verify your email.</h2>
-      <form id="registerForm">
-          <div class="mb-3">
-              <label for="message" class="text-color font-size-2 form-label">We have sent a confirmation code to your email address, take a look and type it in.</label><span class="showError" id="showErrorCode"></span>
-              <input type="text" class="form-control custom-input mt-3" id="confirmationcode" placeholder="Enter your confirmation code." required>
-          </div>       
-          <button type="submit" class="register-btn btn btn-primary w-100 mb-3 custom-btn">Send</button>
-      </form>
-      <button class="btn btn-outline-secondary w-100 custom-btn" onclick="window.location.href='./userLogin.html'">Back to Login</button>
-  </div>
-</div>
+    <div class="container d-flex justify-content-center align-items-center vh-100" id="pricipalContainer">
+        <div class="card  shadow-lg p-4 col-8 col-md-6 col-lg-4 custom-card" id="innerHTML">
+            <h2 class="text-color card-title text-center mb-4 font-size-1" id="h2-card-title">Verify your email address.</h2>
+            <h3 class="text-color card-title text-center mb-4 font-size-3" id="h2-card-title">In order to access your account you must verify your email, enter the username and password you previously entered.</h3>
+            <form id="emailVForm">
+                <div class="mb-3">
+                    <label for="username" class="text-color form-label">User Name</label><span class="showError" id="showErrorName"></span>
+                    <input type="text" class="form-control custom-input" id="username" placeholder="Enter your name" required>
+                </div>
+                <div class="mb-3">
+                    <label for="useremail" class="text-color form-label">User Email Address</label><span class="showError" id="showErrorEmail"></span>
+                    <input type="text" class="form-control custom-input" id="useremail" placeholder="Enter your email address" required>
+                </div>
+                <div class="mb-3">
+                    <label for="password" class="text-color form-label">Password</label>
+                    <input type="password" class="form-control custom-input" id="password" placeholder="Enter password" required>
+                </div>      
+                <button type="submit" class="register-btn btn btn-primary w-100 mb-3 custom-btn">Register</button>
+            </form>
+            <button class="btn btn-outline-secondary w-100 custom-btn" onclick="window.location.href='./userLogin.html'" id="back-to-login-button">Back to Login</button>
+        </div>
+    </div>
 
  <script type="module" src="./emailVerification.js"></script>
 </body>
