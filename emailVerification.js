@@ -27,24 +27,24 @@ document.getElementById('emailVForm').addEventListener('submit', function(event)
   const userName = document.getElementById('username').value;
   const password = document.getElementById('password').value;
   const userEmail = document.getElementById('useremail').value;
-  if(userName && password && confirmPassword && userEmail){
+  if(userName && password && userEmail){
     async function  createUser() {
        
        if(userName && password  && userEmail){
-               const reqBody = { name: `${userName}`, userPassword: `${password}`, userEmail: `${userEmail}`}
+               const reqBody = { userEmail: `${userEmail}`}
                //console.log(JSON.stringify(reqBody))
-               const res = await fetch(`${apiUrl}/users`, {
+               const res = await fetch(`${apiUrl}/email/setcodeverification`, { ////////
                  method: 'post',
                  headers: {'Content-Type': 'application/json'},
                  body: JSON.stringify(reqBody)
                })
-               const newUserCreataion = await res.json();
-               if(newUserCreataion.ok !== "true" ){
-                 showErrorPlace(`${newUserCreataion.message}`, "showError")
+               const emailFech = await res.json();
+               if(emailFech.ok !== "true" ){
+                 showErrorPlace(`${emailFech.message}`, "showErrorEmail")
                  return 
                }
                else{
-                 document.getElementById('registerForm').style.display = "none";
+                 document.getElementById('emailVForm').style.display = "none";
                  document.getElementById('h2-card-title').style.display = "none";
                  document.getElementById('back-to-login-button').style.display = "none";
                  document.getElementById('innerHTML').innerHTML = confirmationHTML();
@@ -113,7 +113,7 @@ document.getElementById('emailVForm').addEventListener('submit', function(event)
  }
  
  function confirmationHTML(){
-   return`  <h2 class="text-color card-title text-center mb-4" id="h2-card-title">Verify your email.</h2>
+   return`  <h2 class="text-color card-title text-center mb-4" id="h2-card-title">verify your email address.</h2>
              <form id="verifyForm">
                  <div class="mb-3">
                      <label for="verificationcode" class="text-color form-label">We have sent a confirmation code to your email address, 
