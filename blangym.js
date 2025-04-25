@@ -9,7 +9,7 @@ async function loginVerification() {
   window.location.href = './userLogin.html'
  }
  else{
-  console.log(cookieVerification)
+  //console.log(cookieVerification)
   const res = await fetch(`${apiUrl}/setcookie/${cookieVerification}`)
   let loginVerification = await res.json()
 
