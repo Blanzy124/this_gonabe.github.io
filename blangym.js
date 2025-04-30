@@ -1,30 +1,8 @@
 import { apiUrl } from "./FETCHCONCTION.JS";
 import { signOut } from "./reuse.js";
 import { cookieVerify } from "./reuse.js";
+import { loginVerification } from "./reuse.js";
 
-
-async function loginVerification() {
- let cookieVerification = await cookieVerify('cookieId')
- if(!cookieVerification){
-  window.location.href = './userLogin.html'
- }
- else{
-  //console.log(cookieVerification)
-  const res = await fetch(`${apiUrl}/setcookie/${cookieVerification}`)
-  let loginVerification = await res.json()
-
-  if(loginVerification.message == 'false'){
-   window.location.href = './userLogin.html'
-   let userName = null;
-   return userName
-  }
-  else{
-    let userName = await loginVerification.userName;
-   return userName
-   
-  }
- }
-}
 loginVerification()
 const userNameLV = await loginVerification()
 /////////////////

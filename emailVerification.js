@@ -1,7 +1,6 @@
 import { apiUrl } from "./FETCHCONCTION.JS";
 import { cookieVerify } from "./reuse.js";
 
-
 async function loginVerification() {
   let cookieVerification = await cookieVerify('cookieId')
   if(!cookieVerification){
@@ -18,6 +17,8 @@ async function loginVerification() {
    }
   }
 }
+
+
 loginVerification()
 const userNameLV = await loginVerification()
 

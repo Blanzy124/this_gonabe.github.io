@@ -1,7 +1,8 @@
 import { apiUrl } from "./FETCHCONCTION.JS";
 import { cookieVerify } from "./reuse.js";
+import { showErrorPlace } from "./reuse.js";
 
- async function loginVerification() {
+async function loginVerification() {
   let cookieVerification = await cookieVerify('cookieId')
   if(!cookieVerification){
    //window.location.href = './userLogin.html'
@@ -16,8 +17,7 @@ import { cookieVerify } from "./reuse.js";
     return userName
    }
   }
- }
- loginVerification()
+}
 const userNameLV = await loginVerification()
  
 
@@ -33,35 +33,47 @@ document.addEventListener('click', function(event) {
   else{
   event.preventDefault()
  async function userAutentication(userName, userPassword){
-  const resp = await fetch(`${apiUrl}/users?name=${userName}&userPassword=${userPassword}`)
+  const resp = await fetch(`${apiUrl}/users?userName=${userName}&userPassword=${userPassword}`)
   const userJson = await resp.json();
- if(userJson.message === 'User do not exit, wrong user name or password'){
-  //console.log('si lo detecto')
+  if(resp.ok === false){
+   console.log('Bad request ', resp.ok)
+   return
+  }
+  console.log(userJson)
+ if(userJson.errorCode == "513"){
+  window.location.href = "./emailVerification.html"
   return
  }
- if(resp.ok === false){
-  console.log('Bad request ', resp.ok)
+ if(userJson.ok !== "true"){
+  showErrorPlace(userJson.message, "showErrorSingIn")
   return
  }
   else{
-    //console.log(userJson[0].name)
-    const userNameCookie = { "userNameCookie": `${userJson[0].name}`}
+    const userNameCookie = { "userNameCookie": `${userJson[0].name}`} ///IM HERE
     const resp = await fetch(`${apiUrl}/setcookie`, {
       method: 'post',
       credentials: "include",
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify(userNameCookie)
     })
-    const cookieId = await resp.json()
-    console.log(cookieId)
-    function createCookie(cookieId){
-      let date = new Date();
-      date.setTime(date.getTime() + (30 * 24 * 60 * 60 * 1000));
-      const expires = "expires=" + date.toUTCString();
-      document.cookie = `cookieId= ${cookieId}; ${expires}; path=/`
+
+    const cookie = await resp.json()
+    console.log(cookie)
+    if(cookie.ok !== "true"){
+
     }
-    createCookie(cookieId)
-    window.location.href = './blangym.html'
+    else{
+      function createCookie(cookie){
+        let date = new Date();
+        date.setTime(date.getTime() + (30 * 24 * 60 * 60 * 1000));
+        const expires = "expires=" + date.toUTCString();
+        document.cookie = `cookieId= ${cookie.cookieId}; ${expires}; path=/`
+      }
+  
+      createCookie(cookie)
+      window.location.href = './blangym.html'
+
+    }
   }
  }
  userAutentication(userName, userPassword)

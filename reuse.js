@@ -29,3 +29,34 @@ export async function signOut() {
         signOutButton.classList.add('redColorBackground')
     }
 }
+
+export function showErrorPlace(message, elementId){
+    document.getElementById(elementId).innerHTML = showErrorIn(message)
+   
+    function showErrorIn(message){
+     return `<small class="red-alert ms-1">${message}</small>`
+    }
+   }
+
+export async function loginVerification() {
+    let cookieVerification = await cookieVerify('cookieId')
+    if(!cookieVerification){
+     window.location.href = './userLogin.html'
+    }
+    else{
+     //console.log(cookieVerification)
+     const res = await fetch(`${apiUrl}/setcookie/${cookieVerification}`)
+     let loginVerification = await res.json()
+   
+     if(loginVerification.message == 'false'){
+      window.location.href = './userLogin.`html'
+      let userName = null;
+      return userName
+     }
+     else{
+       let userName = await loginVerification.userName;
+      return userName
+      
+     }
+    }
+}

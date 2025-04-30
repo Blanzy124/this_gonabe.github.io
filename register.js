@@ -1,6 +1,6 @@
 import { apiUrl } from "./FETCHCONCTION.JS";
 import { cookieVerify } from "./reuse.js";
-
+import { showErrorPlace } from "./reuse.js";
 
 async function loginVerification() {
   let cookieVerification = await cookieVerify('cookieId')
@@ -112,35 +112,36 @@ document.getElementById('registerForm').addEventListener('submit', function(even
 });
 //////////////
 
-function showErrorPlace(message, elementId){
- document.getElementById(elementId).innerHTML = showErrorIn(message)
-
- function showErrorIn(message){
-  return `<small class="red-alert ms-1">${message}</small>`
- }
-}
 
 
 function specialChatactersSerch(string){
- const specialChatacters = ["!", '"', "#", "$", "%", "&", "'", "(", ")", "*", 
-  "+", ",", ".", "/", ":", ";", "<", "=", ">", "?", "@", "[", "\\", "]", "^", 
-  "`", "{", "|", "}", "~"];
- const resu = specialChatacters.some(char => string.includes(char))
- console.log(resu)
- return resu
-}
-
-function confirmationHTML(){
-  return`  <h2 class="text-color card-title text-center mb-4" id="h2-card-title">Verify your email.</h2>
-            <form id="verifyForm">
-                <div class="mb-3">
-                    <label for="verificationcode" class="text-color form-label">We have sent a confirmation code to your email address, 
-                        take a look and type it in.</label><span class="showError" id="showErrorCode"></span>
-                    <input type="text" class="form-control custom-input" id="usercode" placeholder="Enter your code" required>
-                </div>   
-                <button type="submit" class="register-btn btn btn-primary w-100 mb-3 custom-btn">Verify</button>
-            </form>
-                        <button class="btn btn-outline-secondary w-100 custom-btn" onclick="window.location.href='./userLogin.html'">Back to Login</button>`
-}
-
-
+  const specialChatacters = ["!", '"', "#", "$", "%", "&", "'", "(", ")", "*", 
+    "+", ",", ".", "/", ":", ";", "<", "=", ">", "?", "@", "[", "\\", "]", "^", 
+    "`", "{", "|", "}", "~"];
+    const resu = specialChatacters.some(char => string.includes(char))
+    console.log(resu)
+    return resu
+  }
+  
+  function confirmationHTML(){
+    return`  <h2 class="text-color card-title text-center mb-4" id="h2-card-title">Verify your email.</h2>
+    <form id="verifyForm">
+    <div class="mb-3">
+    <label for="verificationcode" class="text-color form-label">We have sent a confirmation code to your email address, 
+    take a look and type it in.</label><span class="showError" id="showErrorCode"></span>
+    <input type="text" class="form-control custom-input" id="usercode" placeholder="Enter your code" required>
+    </div>   
+    <button type="submit" class="register-btn btn btn-primary w-100 mb-3 custom-btn">Verify</button>
+    </form>
+    <button class="btn btn-outline-secondary w-100 custom-btn" onclick="window.location.href='./userLogin.html'">Back to Login</button>`
+  }
+  
+  
+  //
+  //function showErrorPlace(message, elementId){
+  // document.getElementById(elementId).innerHTML = showErrorIn(message)
+  //
+  // function showErrorIn(message){
+  //  return `<small class="red-alert ms-1">${message}</small>`
+  // }
+  //}
