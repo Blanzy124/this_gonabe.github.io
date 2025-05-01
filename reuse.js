@@ -44,11 +44,11 @@ export async function loginVerification() {
      window.location.href = './userLogin.html'
     }
     else{
-     //console.log(cookieVerification)
+     console.log(cookieVerification)
      const res = await fetch(`${apiUrl}/setcookie/${cookieVerification}`)
      let loginVerification = await res.json()
    
-     if(loginVerification.message == 'false'){
+     if(loginVerification.ok == 'false'){
       window.location.href = './userLogin.`html'
       let userName = null;
       return userName

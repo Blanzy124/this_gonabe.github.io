@@ -11,7 +11,7 @@ async function loginVerification() {
    console.log(cookieVerification)
    const loginv = await fetch(`${apiUrl}/setcookie/${cookieVerification}`)
    let loginVerification = await loginv.json()
-   if(loginVerification.message == 'true'){
+   if(loginVerification.ok == 'true'){
     window.location.href = './index.html'
     let userName = await loginVerification.userName;
     return userName
@@ -49,7 +49,7 @@ document.addEventListener('click', function(event) {
   return
  }
   else{
-    const userNameCookie = { "userNameCookie": `${userJson[0].name}`} ///IM HERE
+    const userNameCookie = { "userNameCookie": `${userJson.name}`} ///IM HERE
     const resp = await fetch(`${apiUrl}/setcookie`, {
       method: 'post',
       credentials: "include",
@@ -63,6 +63,7 @@ document.addEventListener('click', function(event) {
 
     }
     else{
+      console.log(cookie, "hgo")
       function createCookie(cookie){
         let date = new Date();
         date.setTime(date.getTime() + (30 * 24 * 60 * 60 * 1000));
