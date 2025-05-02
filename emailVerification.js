@@ -26,13 +26,13 @@ const userNameLV = await loginVerification()
 document.getElementById('emailVForm').addEventListener('submit', function(event) {
   event.preventDefault();
   const userName = document.getElementById('username').value;
-  const password = document.getElementById('password').value;
+  const userPassword = document.getElementById('password').value;
   const userEmail = document.getElementById('useremail').value;
   if(userName && password && userEmail){
     async function  createUser() {
        
-       if(userName && password  && userEmail){
-               const reqBody = { userEmail: `${userEmail}`}
+       if(userName && userPassword  && userEmail){
+               const reqBody = { userEmail: `${userEmail}`, userPassword: `${userPassword}`}
                //console.log(JSON.stringify(reqBody))
                const res = await fetch(`${apiUrl}/email/setcodeverification`, { ////////
                  method: 'post',
