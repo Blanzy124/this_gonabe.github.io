@@ -49,7 +49,7 @@ document.addEventListener('click', function(event) {
   return
  }
   else{
-    const userNameCookie = { "userNameCookie": `${userJson.name}`} ///IM HERE
+    const userNameCookie = { "userNameCookie": `${userJson.data.name}`} ///IM HERE
     const resp = await fetch(`${apiUrl}/setcookie`, {
       method: 'post',
       credentials: "include",
@@ -68,7 +68,7 @@ document.addEventListener('click', function(event) {
         let date = new Date();
         date.setTime(date.getTime() + (30 * 24 * 60 * 60 * 1000));
         const expires = "expires=" + date.toUTCString();
-        document.cookie = `cookieId= ${cookie.cookieId}; ${expires}; path=/`
+        document.cookie = `cookieId= ${cookie.data.cookieId}; ${expires}; path=/`
       }
   
       createCookie(cookie)

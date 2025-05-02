@@ -12,7 +12,7 @@ async function loginVerification() {
    let loginVerification = await loginv.json()
    if(loginVerification.message == 'true'){
     window.location.href = './index.html'
-    let userName = await loginVerification.userName;
+    let userName = await loginVerification.data.userName;
     return userName
    }
   }

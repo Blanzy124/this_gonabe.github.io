@@ -54,7 +54,7 @@ export async function loginVerification() {
       return userName
      }
      else{
-       let userName = await loginVerification.userName;
+       let userName = await loginVerification.data.userName;
       return userName
       
      }

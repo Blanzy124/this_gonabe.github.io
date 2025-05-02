@@ -37,7 +37,7 @@ if(event.target.matches('button.send-button')){
   async function userAutentication(userName, userPassword){
     const resp = await fetch(`${apiUrl}/users?name=${userName}&userPassword=${userPassword}`)
     const userJson = await resp.json();
-   if(userJson.message === 'User do not exit, wrong user name or password'){
+   if(userJson.ok !== "true"){
     console.log('si lo detecto')
     return
    }
@@ -46,7 +46,6 @@ if(event.target.matches('button.send-button')){
     return
    }
     else{
-      console.log(userJson[0].name, userJson[0].userStatus)
       const buttons = document.querySelectorAll('button.btn-danger');
       buttons.forEach(button => {
         button.disabled = false;
