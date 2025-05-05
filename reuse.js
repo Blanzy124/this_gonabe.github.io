@@ -20,7 +20,7 @@ export async function signOut() {
     })
     const cookieDelete = await res.json();
     console.log(cookieDelete)
-    if(cookieDelete.message == "Cookie Has Been Delete"){
+    if(cookieDelete.ok === true){
         document.cookie = `cookieId=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
         window.location.href = './index.html'
     }
@@ -48,8 +48,8 @@ export async function loginVerification() {
      const res = await fetch(`${apiUrl}/setcookie/${cookieVerification}`)
      let loginVerification = await res.json()
    
-     if(loginVerification.ok == 'false'){
-      window.location.href = './userLogin.`html'
+     if(loginVerification.ok == false){
+      window.location.href = './userLogin.html';
       let userName = null;
       return userName
      }

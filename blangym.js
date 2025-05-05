@@ -39,7 +39,7 @@ document.getElementById('exerciseForm').addEventListener('submit', function(e) {
         )
         const gymPostResponse = await resp.json()
         console.log(gymPostResponse)
-        if(gymPostResponse.message == "blanGym Post Success"){
+        if(gymPostResponse.ok === true){
             window.location.reload(true)
             return
         }
@@ -74,7 +74,7 @@ async function  exerciseDelete() {
         method: 'DELETE'
     })
     const exerciseDeleted = await res.json();
-    if(exerciseDeleted.message !== "Exercise Has Been Deleted"){
+    if(exerciseDeleted.ok !== true){
         console.log(exerciseDelete)
     }
     else{
@@ -87,7 +87,8 @@ async function  exerciseDelete() {
 async function addExerciseToTable() {
     const res = await fetch(`${apiUrl}/blangym?userName=${userNameLV}`)
     const exercises = await res.json();
-    const addExerciseTable = exercises.map(exercise => {
+
+    const addExerciseTable = exercises.data.exercises.map(exercise => {
         return `
     <tr >
      <td class="tr text-color">${exercise.date}</td>
@@ -102,7 +103,7 @@ async function addExerciseToTable() {
     </tr>`
     }).join('')
     document.getElementById('exerciseTableBody').innerHTML = addExerciseTable
-    return exercises
+    return exercises.data.exercises
 }
 
 function formatDate(dateString) {
@@ -139,7 +140,7 @@ document.getElementById("filterBy").addEventListener("change", async function(e)
     else{
         document.getElementById('showFilterOptions').innerHTML = "";
         const exercises = await addExerciseToTable();
-        const allExercises = exercises.map(exercise => exerciseShowEstructure(exercise)).join("");
+        const allExercises = exercises.data.exercises.map(exercise => exerciseShowEstructure(exercise)).join("");
         document.getElementById('exerciseTableBody').innerHTML = allExercises;
     }
 

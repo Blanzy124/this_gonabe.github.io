@@ -10,7 +10,7 @@ var idr = 0;
 fetch(`${apiUrl}/coments`)
 .then(res => res.json())
 .then(coments => {
-    const html = coments.map(coment => {
+    const html = coments.data.coments.map(coment => {
      idr = idr + 1;
      return `
             <div class="container-fluid mt-3">
@@ -35,10 +35,11 @@ if(event.target.matches('button.send-button')){
   const userPassword = document.getElementById('userPassword').value;
 ///////
   async function userAutentication(userName, userPassword){
-    const resp = await fetch(`${apiUrl}/users?name=${userName}&userPassword=${userPassword}`)
+    const resp = await fetch(`${apiUrl}/users?userName=${userName}&userPassword=${userPassword}`)
     const userJson = await resp.json();
-   if(userJson.ok !== "true"){
+   if(userJson.ok !== true){
     console.log('si lo detecto')
+    console.log(userJson)
     return
    }
    if(resp.ok === false){
@@ -76,24 +77,19 @@ document.addEventListener('click', function(event) {
      )
      if(resp.ok){
       const coment = await resp.json()
-      const comentStatus = coment["message"];
-      if(comentStatus === `Coment has been deleted`){
+      if(coment.ok === true){
         window.location.reload()
       }
-      console.log(comentStatus)
-      return comentStatus
+      return 
      }
      else {
-     const coment = await resp.json()
-      const comentStatus = coment["message"];
-      console.log(comentStatus)
-      return comentStatus
+      return
      }
    
     } catch (error){
      if(error){
-      console.log("error en el catch", error)
-      return `"error en el catch", ${error}`
+      //console.log("error en el catch", error)
+      return //`"error en el catch", ${error}`
      }
     }
    }

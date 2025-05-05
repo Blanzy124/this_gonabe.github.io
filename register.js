@@ -11,7 +11,7 @@ async function loginVerification() {
    console.log(cookieVerification)
    const loginv = await fetch(`${apiUrl}/setcookie/${cookieVerification}`)
    let loginVerification = await loginv.json()
-   if(loginVerification.message == 'true'){
+   if(loginVerification.message == true){
     window.location.href = './index.html'
     let userName = await loginVerification.data.userName;
     return userName
@@ -57,7 +57,7 @@ document.getElementById('registerForm').addEventListener('submit', function(even
                 body: JSON.stringify(reqBody)
               })
               const newUserCreataion = await res.json();
-              if(newUserCreataion.ok !== "true" ){
+              if(newUserCreataion.ok !== true){
                 showErrorPlace(`${newUserCreataion.message}`, "showError")
                 return 
               }
@@ -79,7 +79,7 @@ document.getElementById('registerForm').addEventListener('submit', function(even
                         body: JSON.stringify(reqBody)
                       })
                       const verifyUser = await res.json();
-                      if(verifyUser.ok !== 'true')
+                      if(verifyUser.ok !== true)
                         showErrorPlace(`${verifyUser.message}`, 'showErrorCode');
                       else{
                         window.location.href = './userLogin.html';

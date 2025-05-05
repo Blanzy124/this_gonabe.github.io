@@ -1,7 +1,6 @@
 import { apiUrl } from "./FETCHCONCTION.JS";
 // Animation for the 3 boxes starts
 const cookies = document.cookie;
-console.log(cookies)
 
 const resus = document.querySelectorAll('.resume');
 
@@ -110,7 +109,7 @@ var hresultados = [];
 fetch(`${apiUrl}/coments`)
 .then(res => res.json())
 .then(coments => {
-    const html = coments.map(coment => {
+    const html = coments.data.coments.map(coment => {
      return `
             <div class="container-fluid mt-3">
                 <div class="row ">
@@ -146,7 +145,6 @@ document.getElementById('miFormulario').addEventListener('submit', function(even
       });
       if (resp.ok) {
         const show = await resp.json();
-        console.log(show)
         window.location.reload();
       } else {
         console.error('Error en la solicitud:', resp.status, resp.statusText);

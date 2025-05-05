@@ -10,7 +10,8 @@ async function loginVerification() {
    console.log(cookieVerification)
    const loginv = await fetch(`${apiUrl}/setcookie/${cookieVerification}`)
    let loginVerification = await loginv.json()
-   if(loginVerification.message == 'true'){
+   console.log(loginVerification)
+   if(loginVerification.ok === true){
     window.location.href = './index.html'
     let userName = await loginVerification.data.userName;
     return userName
@@ -32,7 +33,7 @@ document.getElementById('emailVForm').addEventListener('submit', function(event)
     async function  createUser() {
        
        if(userName && userPassword  && userEmail){
-               const reqBody = { userEmail: `${userEmail}`, userPassword: `${userPassword}`}
+               const reqBody = { userName: `${userName}`, userEmail: `${userEmail}`, userPassword: `${userPassword}`}
                //console.log(JSON.stringify(reqBody))
                const res = await fetch(`${apiUrl}/email/setcodeverification`, { ////////
                  method: 'post',
@@ -40,7 +41,7 @@ document.getElementById('emailVForm').addEventListener('submit', function(event)
                  body: JSON.stringify(reqBody)
                })
                const emailFech = await res.json();
-               if(emailFech.ok !== "true" ){
+               if(emailFech.ok !== true){
                  showErrorPlace(`${emailFech.message}`, "showErrorEmail")
                  return 
                }
@@ -62,7 +63,7 @@ document.getElementById('emailVForm').addEventListener('submit', function(event)
                          body: JSON.stringify(reqBody)
                        })
                        const verifyUser = await res.json();
-                       if(verifyUser.ok !== 'true')
+                       if(verifyUser.ok !== true)
                          showErrorPlace(`${verifyUser.message}`, 'showErrorCode');
                        else{
                          window.location.href = './userLogin.html';

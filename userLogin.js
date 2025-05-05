@@ -11,7 +11,7 @@ async function loginVerification() {
    console.log(cookieVerification)
    const loginv = await fetch(`${apiUrl}/setcookie/${cookieVerification}`)
    let loginVerification = await loginv.json()
-   if(loginVerification.ok == 'true'){
+   if(loginVerification.ok === true){
     window.location.href = './index.html'
     let userName = await loginVerification.userName;
     return userName
@@ -39,12 +39,11 @@ document.addEventListener('click', function(event) {
    console.log('Bad request ', resp.ok)
    return
   }
-  console.log(userJson)
- if(userJson.errorCode == "513"){
+ if(userJson.errorCode == 513){
   window.location.href = "./emailVerification.html"
   return
  }
- if(userJson.ok !== "true"){
+ if(userJson.ok !== true){
   showErrorPlace(userJson.message, "showErrorSingIn")
   return
  }
@@ -58,8 +57,7 @@ document.addEventListener('click', function(event) {
     })
 
     const cookie = await resp.json()
-    console.log(cookie)
-    if(cookie.ok !== "true"){
+    if(cookie.ok !== true){
 
     }
     else{
