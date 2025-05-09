@@ -51,7 +51,7 @@ document.getElementById('registerForm').addEventListener('submit', function(even
             else{
               const reqBody = { name: `${userName}`, userPassword: `${password}`, userEmail: `${userEmail}`}
               //console.log(JSON.stringify(reqBody))
-              const res = await fetch(`${apiUrl}/users`, {
+              const res = await fetch(`${apiUrl}/users/create`, {
                 method: 'post',
                 headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify(reqBody)

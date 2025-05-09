@@ -1,3 +1,4 @@
+import { json } from "express";
 import { apiUrl } from "./FETCHCONCTION.JS";
 import { signOut } from "./reuse.js";
 import { cookieVerify } from "./reuse.js";
@@ -35,7 +36,13 @@ if(event.target.matches('button.send-button')){
   const userPassword = document.getElementById('userPassword').value;
 ///////
   async function userAutentication(userName, userPassword){
-    const resp = await fetch(`${apiUrl}/users?userName=${userName}&userPassword=${userPassword}`)
+    const body = { userName: userName, userPassword: userPassword}
+    const resp = await fetch(`${apiUrl}/users/login`, {
+      method: "POST",
+      credentials: "include",
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify(body)
+    })
     const userJson = await resp.json();
    if(userJson.ok !== true){
     console.log('si lo detecto')

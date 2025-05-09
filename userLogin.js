@@ -33,7 +33,13 @@ document.addEventListener('click', function(event) {
   else{
   event.preventDefault()
  async function userAutentication(userName, userPassword){
-  const resp = await fetch(`${apiUrl}/users?userName=${userName}&userPassword=${userPassword}`)
+  const body = { userName: userName, userPassword: userPassword}
+  const resp = await fetch(`${apiUrl}/users/login`,{
+    method: "POST",
+    credentials: "include",
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify(body)
+  })
   const userJson = await resp.json();
   if(resp.ok === false){
    console.log('Bad request ', resp.ok)
