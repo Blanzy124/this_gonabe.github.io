@@ -60,3 +60,26 @@ export async function loginVerification() {
      }
     }
 }
+
+export async function JWTsave( cookieId ){
+    const body = { cookieId }
+    const JWTf = await fetch(`${apiUrl}/tokens/jwtrefresh`, {
+      method: "POST",
+      credentials: "include",
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify(body)
+    })
+    const JWT = await JWTf.json()
+    if(JWT.ok === false){ return window.location.href = './userLogin.html'};
+    localStorage.setItem("token", JWT);
+}
+
+export async function JWT() {
+    const token = localStorage.getItem("token");
+    if(!token){ 
+        const cookieId =  cookieVerify('cookieId');
+        await JWTsave(cookieId);
+        return localStorage.getItem("token");
+    }
+    return token;
+}

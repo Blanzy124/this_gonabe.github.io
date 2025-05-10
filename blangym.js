@@ -2,6 +2,7 @@ import { apiUrl } from "./FETCHCONCTION.JS";
 import { signOut } from "./reuse.js";
 import { cookieVerify } from "./reuse.js";
 import { loginVerification } from "./reuse.js";
+import { JWT } from "./reuse.js";
 
 loginVerification()
 const userNameLV = await loginVerification()
@@ -31,9 +32,10 @@ document.getElementById('exerciseForm').addEventListener('submit', function(e) {
         rest: rest,
         notes: `${notes}`
         }
+
         const resp = await fetch(`${apiUrl}/blangym?userName=${userNameLV}`, {
             method: 'post',
-            headers: {'Content-Type': 'application/json'},
+            headers: {'Content-Type': 'application/json', 'Authorization': `Bearer ${await JWT()}`},
             body: JSON.stringify(reqBody)
         }
         )
@@ -71,7 +73,8 @@ async function  exerciseDelete() {
     boton.disabled = true;
 
     const res = await fetch(`${apiUrl}/blangym/${botonId}`, {
-        method: 'DELETE'
+        method: 'DELETE',
+        headers: {'Authorization': `Bearer ${await JWT()}`}
     })
     const exerciseDeleted = await res.json();
     if(exerciseDeleted.ok !== true){
@@ -85,7 +88,11 @@ async function  exerciseDelete() {
 }
 
 async function addExerciseToTable() {
-    const res = await fetch(`${apiUrl}/blangym?userName=${userNameLV}`)
+    console.log(await JWT())
+    const res = await fetch(`${apiUrl}/blangym?userName=${userNameLV}`, {
+        method: "GET",  
+        headers: {'Authorization': `Bearer ${await JWT()}`}
+    })
     const exercises = await res.json();
 
     const addExerciseTable = exercises.data.exercises.map(exercise => {

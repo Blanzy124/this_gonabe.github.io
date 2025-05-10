@@ -1,7 +1,7 @@
 import { apiUrl } from "./FETCHCONCTION.JS";
 import { cookieVerify } from "./reuse.js";
 import { showErrorPlace } from "./reuse.js";
-
+import { JWTsave } from "./reuse.js";
 async function loginVerification() {
   let cookieVerification = await cookieVerify('cookieId')
   if(!cookieVerification){
@@ -54,31 +54,10 @@ document.addEventListener('click', function(event) {
   return
  }
   else{
-    const userNameCookie = { "userNameCookie": `${userJson.data.name}`} ///IM HERE
-    const resp = await fetch(`${apiUrl}/setcookie`, {
-      method: 'post',
-      credentials: "include",
-      headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify(userNameCookie)
-    })
+    createCookie(userJson.data.cookieId) 
+    await JWTsave(userJson.data.cookieId)
+    window.location.href = './blangym.html'
 
-    const cookie = await resp.json()
-    if(cookie.ok !== true){
-
-    }
-    else{
-      console.log(cookie, "hgo")
-      function createCookie(cookie){
-        let date = new Date();
-        date.setTime(date.getTime() + (30 * 24 * 60 * 60 * 1000));
-        const expires = "expires=" + date.toUTCString();
-        document.cookie = `cookieId= ${cookie.data.cookieId}; ${expires}; path=/`
-      }
-  
-      createCookie(cookie)
-      window.location.href = './blangym.html'
-
-    }
   }
  }
  userAutentication(userName, userPassword)
@@ -86,3 +65,9 @@ document.addEventListener('click', function(event) {
  }
 })
 
+function createCookie(cookieId){
+  let date = new Date();
+  date.setTime(date.getTime() + (30 * 24 * 60 * 60 * 1000));
+  const expires = "expires=" + date.toUTCString();
+  document.cookie = `cookieId= ${cookieId}; ${expires}; path=/`
+}
