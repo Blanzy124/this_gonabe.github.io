@@ -1,5 +1,5 @@
 import { apiUrl } from "./FETCHCONCTION.JS";
-import { signOut } from "./reuse.js";
+import { JWTsave, signOut } from "./reuse.js";
 import { cookieVerify } from "./reuse.js";
 import { loginVerification } from "./reuse.js";
 import { JWT } from "./reuse.js";
@@ -42,7 +42,7 @@ document.getElementById('exerciseForm').addEventListener('submit', function(e) {
         const gymPostResponse = await resp.json()
         console.log(gymPostResponse)
         if(gymPostResponse.ok === true){
-            window.location.reload(true)
+            window.location.reload(true) //NEED TO BE CHANGE
             return
         }
         else{
@@ -88,12 +88,13 @@ async function  exerciseDelete() {
 }
 
 async function addExerciseToTable() {
-    console.log(await JWT())
     const res = await fetch(`${apiUrl}/blangym?userName=${userNameLV}`, {
-        method: "GET",  
+        method: "GET",
+        credentials: "include",
         headers: {'Authorization': `Bearer ${await JWT()}`}
     })
     const exercises = await res.json();
+    //if(exercises.errorCode === 701){ JWTsave()}
 
     const addExerciseTable = exercises.data.exercises.map(exercise => {
         return `

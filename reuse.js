@@ -76,10 +76,16 @@ export async function JWTsave( cookieId ){
 
 export async function JWT() {
     const token = localStorage.getItem("token");
-    if(!token){ 
+    const payload = JSON.parse(atob(token.split('.')[1]))
+    console.log(payload)
+    const expDate = new Date(payload.exp * 1000)
+    console.log(expDate.toLocaleString())
+    if(!token || Date.now() > expDate){ 
         const cookieId =  cookieVerify('cookieId');
         await JWTsave(cookieId);
         return localStorage.getItem("token");
     }
     return token;
 }
+
+//MUST MAKE JWT REFRESH
