@@ -84,4 +84,38 @@ export async function JWT() {
     return token;
 }
 
+export class request {
+    constructor(url){
+        this.url = url;
+    }
+}
+export class gymGet extends request {
+    constructor(url, method, headers){
+
+    }
+}
+
+export class  gympost extends request {
+    method = "POST";
+    responseJson;
+    constructor(url, body, headers){
+        super(url);
+        this.body = body;
+        this.headers = headers
+    }
+    
+    async getJson(){ return this.responseJson}
+
+
+    async setPOST(){  const res = await fetch(this.url, {
+                    method: this.method,
+                    headers: this.headers,
+                    body: JSON.stringify(this.body)} ) 
+
+                    this.responseJson = await res.json();
+                    console.log(this.responseJson)
+                }         
+}
+
+
 //MUST MAKE JWT REFRESH

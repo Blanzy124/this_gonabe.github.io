@@ -3,7 +3,7 @@ import { JWTsave, signOut } from "./reuse.js";
 import { cookieVerify } from "./reuse.js";
 import { loginVerification } from "./reuse.js";
 import { JWT } from "./reuse.js";
-
+import { gympost } from "./reuse.js";
 loginVerification()
 const userNameLV = await loginVerification()
 /////////////////
@@ -23,7 +23,7 @@ document.getElementById('exerciseForm').addEventListener('submit', function(e) {
  if(dateG && muscleGroup && weight && reps && rest) {
     const date = formatDate(dateG);
     async function addExercisesToDB() {
-        const reqBody = { 
+        const body = { 
         userName: `${userNameLV}`, 
         date: `${date}`, 
         muscleGroup: `${muscleGroup}`, 
@@ -33,20 +33,16 @@ document.getElementById('exerciseForm').addEventListener('submit', function(e) {
         notes: `${notes}`
         }
 
-        const resp = await fetch(`${apiUrl}/blangym?userName=${userNameLV}`, {
-            method: 'post',
-            headers: {'Content-Type': 'application/json', 'Authorization': `Bearer ${await JWT()}`},
-            body: JSON.stringify(reqBody)
-        }
-        )
-        const gymPostResponse = await resp.json()
-        console.log(gymPostResponse)
-        if(gymPostResponse.ok === true){
+        const exercisePost = new gympost(`${apiUrl}/blangym?userName=${userNameLV}`, body, {'Content-Type': 'application/json', 'Authorization': `Bearer ${await JWT()}`})
+        await exercisePost.setPOST()
+        const json = await exercisePost.getJson();
+        console.log(json)
+        if(await exercisePost.getJson().ok === true){//
             window.location.reload(true) //NEED TO BE CHANGE
             return
         }
         else{
-            console.log(gymPostResponse)
+            console.log(await json.ok, "else")
             return
         }   
     }
