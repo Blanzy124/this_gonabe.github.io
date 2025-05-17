@@ -1,9 +1,8 @@
 import { apiUrl } from "./FETCHCONCTION.JS";
-import { JWTsave, signOut } from "./reuse.js";
+import { JWTsave, POST, GET, signOut } from "./reuse.js";
 import { cookieVerify } from "./reuse.js";
 import { loginVerification } from "./reuse.js";
 import { JWT } from "./reuse.js";
-import { gympost } from "./reuse.js";
 loginVerification()
 const userNameLV = await loginVerification()
 /////////////////
@@ -13,12 +12,12 @@ addExerciseToTable()
 /////////////////
 document.getElementById('exerciseForm').addEventListener('submit', function(e) {
  e.preventDefault();
- const dateG = document.getElementById('date').value;
- const muscleGroup = document.getElementById('muscleGroup').value;
- const weight = parseFloat(document.getElementById('weight').value);
- const reps = parseInt(document.getElementById('reps').value);
- const rest = parseFloat(document.getElementById('rest').value);
- const notes = document.getElementById('notes').value;
+ let dateG = document.getElementById('date').value;
+ let muscleGroup = document.getElementById('muscleGroup').value;
+ let weight = parseFloat(document.getElementById('weight').value);
+ let reps = parseInt(document.getElementById('reps').value);
+ let rest = parseFloat(document.getElementById('rest').value);
+ let notes = document.getElementById('notes').value;
 
  if(dateG && muscleGroup && weight && reps && rest) {
     const date = formatDate(dateG);
@@ -33,16 +32,16 @@ document.getElementById('exerciseForm').addEventListener('submit', function(e) {
         notes: `${notes}`
         }
 
-        const exercisePost = new gympost(`${apiUrl}/blangym?userName=${userNameLV}`, body, {'Content-Type': 'application/json', 'Authorization': `Bearer ${await JWT()}`})
-        await exercisePost.setPOST()
+        const exercisePost = new POST(`${apiUrl}/blangym?userName=${userNameLV}`, body, {'Content-Type': 'application/json', 'Authorization': `Bearer ${await JWT()}`})
+        await exercisePost.setPOST();
         const json = await exercisePost.getJson();
-        console.log(json)
-        if(await exercisePost.getJson().ok === true){//
-            window.location.reload(true) //NEED TO BE CHANGE
+        if(json.ok === true){
+            document.getElementById('exerciseForm').reset();
+            addExerciseToTable();
             return
         }
         else{
-            console.log(await json.ok, "else")
+            console.log(json.ok, "else")
             return
         }   
     }
@@ -84,13 +83,9 @@ async function  exerciseDelete() {
 }
 
 async function addExerciseToTable() {
-    const res = await fetch(`${apiUrl}/blangym?userName=${userNameLV}`, {
-        method: "GET",
-        credentials: "include",
-        headers: {'Authorization': `Bearer ${await JWT()}`}
-    })
-    const exercises = await res.json();
-    //if(exercises.errorCode === 701){ JWTsave()}
+    const exercisesGet = new GET(`${apiUrl}/blangym?userName=${userNameLV}`, {'Authorization': `Bearer ${await JWT()}`})
+    await exercisesGet.setGET();
+    const exercises = await exercisesGet.getJson();
 
     const addExerciseTable = exercises.data.exercises.map(exercise => {
         return `

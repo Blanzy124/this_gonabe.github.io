@@ -89,13 +89,25 @@ export class request {
         this.url = url;
     }
 }
-export class gymGet extends request {
-    constructor(url, method, headers){
+export class GET extends request {
+    method = "GET";
+    responseJson;
+    constructor(url, headers){
+        super(url);
+        this.headers = headers;
+    }
+    async getJson(){ return this.responseJson}
 
+    async setGET(){
+                    const res = await fetch(this.url, {
+                    method: this.method,
+                    headers: this.headers} ) 
+
+                    this.responseJson = await res.json();
     }
 }
 
-export class  gympost extends request {
+export class POST extends request {
     method = "POST";
     responseJson;
     constructor(url, body, headers){
@@ -106,14 +118,12 @@ export class  gympost extends request {
     
     async getJson(){ return this.responseJson}
 
-
     async setPOST(){  const res = await fetch(this.url, {
                     method: this.method,
                     headers: this.headers,
                     body: JSON.stringify(this.body)} ) 
 
                     this.responseJson = await res.json();
-                    console.log(this.responseJson)
                 }         
 }
 
