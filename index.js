@@ -1,3 +1,4 @@
+//import WebSocket from 'ws';
 import { apiUrl } from "./FETCHCONCTION.JS";
 // Animation for the 3 boxes starts
 const cookies = document.cookie;
@@ -155,7 +156,6 @@ document.getElementById('miFormulario').addEventListener('submit', function(even
   };
   postComent();
 });
-
 
 
 
