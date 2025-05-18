@@ -1,6 +1,15 @@
+import { apiUrl } from "./FETCHCONCTION.JS";
+import { JWTsave, POST, GET, signOut } from "./reuse.js";
+import { cookieVerify } from "./reuse.js";
+import { loginVerification } from "./reuse.js";
+import { JWT } from "./reuse.js";
+loginVerification()
+const userNameLV = await loginVerification()
+
+
 const socket = new WebSocket("wss://localhost:8443/foo");
 
-const show = document.getElementById('showMessage');
+
 
 socket.addEventListener("open", async (event) => {
  //const data =  await event.data.text();
@@ -9,7 +18,7 @@ socket.addEventListener("open", async (event) => {
 });
 socket.addEventListener("message", async (event) => {
  const data = await event.data.text();
- show.innerHTML = innerH(data)
+ document.getElementById('showMessage').innerHTML = innerH(data)
   console.log("Message from server ", data);
 });
 
@@ -22,7 +31,5 @@ document.getElementById("send").addEventListener("click", function () {
 })
 
 
-function innerH(message){ return
- `<span>${message}</span>`
-}
+function innerH(data){ return`<span>${data}</span>`}
 
