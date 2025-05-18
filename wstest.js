@@ -3,18 +3,17 @@ import { JWTsave, POST, GET, signOut } from "./reuse.js";
 import { cookieVerify } from "./reuse.js";
 import { loginVerification } from "./reuse.js";
 import { JWT } from "./reuse.js";
-loginVerification()
-const userNameLV = await loginVerification()
+//loginVerification()
+//const userNameLV = await loginVerification()
 
 
 const socket = new WebSocket("wss://localhost:8443/foo");
 
-
+//JWT()
 
 socket.addEventListener("open", async (event) => {
- //const data =  await event.data.text();
- console.log(`User number : ${event}`)
-  socket.send("Hello Server!");
+  console.log('Opening...', event)
+  socket.send("hola, sin JWT");
 });
 socket.addEventListener("message", async (event) => {
  const data = await event.data.text();
