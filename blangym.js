@@ -139,7 +139,7 @@ document.getElementById("filterBy").addEventListener("change", async function(e)
     else{
         document.getElementById('showFilterOptions').innerHTML = "";
         const exercises = await addExerciseToTable();
-        const allExercises = exercises.data.exercises.map(exercise => exerciseShowEstructure(exercise)).join("");
+        const allExercises = exercises.map(exercise => exerciseShowEstructure(exercise)).join("");
         document.getElementById('exerciseTableBody').innerHTML = allExercises;
     }
 

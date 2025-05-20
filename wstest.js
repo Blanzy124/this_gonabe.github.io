@@ -3,17 +3,16 @@ import { JWTsave, POST, GET, signOut } from "./reuse.js";
 import { cookieVerify } from "./reuse.js";
 import { loginVerification } from "./reuse.js";
 import { JWT } from "./reuse.js";
-//loginVerification()
-//const userNameLV = await loginVerification()
+loginVerification()  
+const userNameLV = await loginVerification()
+//?token=${await JWT()
 
+const socket = new WebSocket(`wss://localhost:8443/foo?token=${await JWT()}`);
 
-const socket = new WebSocket("wss://localhost:8443/foo");
-
-//JWT()
 
 socket.addEventListener("open", async (event) => {
-  console.log('Opening...', event)
-  socket.send("hola, sin JWT");
+  console.log('Connected')
+  socket.send(`${userNameLV} is connected`);
 });
 socket.addEventListener("message", async (event) => {
  const data = await event.data.text();
