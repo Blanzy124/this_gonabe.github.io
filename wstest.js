@@ -11,19 +11,23 @@ const socket = new WebSocket(`wss://localhost:8443/foo?token=${await JWT()}`);
 
 
 socket.addEventListener("open", async (event) => {
+  const message = `${userNameLV} is connected`
+  const data = { message: message, to: messageTo || "nobody"};
   console.log('Connected')
-  socket.send(`${userNameLV} is connected`);
+  socket.send(JSON.stringify(data));
 });
 socket.addEventListener("message", async (event) => {
- const data = await event.data.text();
+  const data = await event.data;
+  console.log(data)
  document.getElementById('showMessage').innerHTML = innerH(data)
   console.log("Message from server ", data);
 });
 
 document.getElementById("send").addEventListener("click", function () {
- const message = document.getElementById("messageIn").value
-
- socket.send(message);
+ const message = document.getElementById("messageIn").value;
+ const messageTo = document.getElementById("messageTo").value;
+  const data = { message: message, to: messageTo || "nobody"}
+ socket.send(JSON.stringify(data));
  document.getElementById("formIn").reset();
 
 })
