@@ -69,7 +69,7 @@ export async function JWTsave( cookieId ){
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify(body)
     })
-    const JWT = await JWTf.json()
+    const JWT = await JWTf.json();
     if(JWT.ok === false){ return window.location.href = './userLogin.html'};
     localStorage.setItem("token", JWT);
 }
