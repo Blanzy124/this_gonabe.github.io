@@ -17,9 +17,10 @@ socket.addEventListener("open", async (event) => {
   socket.send(JSON.stringify(data));
 });
 socket.addEventListener("message", async (event) => {
-  const data = await event.data;
+  const d = await event.data;
+  const data = JSON.parse(d)
   console.log(data)
- document.getElementById('showMessage').innerHTML = innerH(data)
+ document.getElementById('showMessage').innerHTML = innerH(data.message)
   console.log("Message from server ", data);
 });
 
