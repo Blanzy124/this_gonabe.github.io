@@ -1,10 +1,10 @@
-import { json } from "express";
 import { apiUrl } from "./FETCHCONCTION.JS";
 import { signOut } from "./reuse.js";
 import { cookieVerify } from "./reuse.js";
 import { loginVerification } from "./reuse.js";
+import { JWT } from "./reuse.js";
 
- loginVerification()
+loginVerification()
 const userNameLV = await loginVerification()
 
 var idr = 0;
@@ -78,7 +78,7 @@ document.addEventListener('click', function(event) {
     try{
      const resp = await fetch(`${apiUrl}/coments/${id}`, {
       method: 'DELETE',
-      headers: {'Content-Type': 'application/json'},
+      headers: {'Authorization': `Bearer ${await JWT()}`},
     }
    
      )
