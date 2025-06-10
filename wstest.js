@@ -1,4 +1,4 @@
-import { apiUrl } from "./FETCHCONCTION.JS";
+import { apiUrlWS } from "./FETCHCONCTION.JS";
 import { JWTsave, POST, GET, signOut } from "./reuse.js";
 import { cookieVerify } from "./reuse.js";
 import { loginVerification } from "./reuse.js";
@@ -7,7 +7,7 @@ loginVerification()
 const userNameLV = await loginVerification()
 //?token=${await JWT()
 
-const socket = new WebSocket(`wss://localhost:8443/foo?token=${await JWT()}`);
+const socket = new WebSocket(`${apiUrlWS}/foo?token=${await JWT()}`);
 
 
 socket.addEventListener("open", async (event) => {
